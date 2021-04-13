@@ -7,6 +7,7 @@ const App = () => {
     return (
         <svg style={{border: "1px solid lightgrey", width: viewWidth, height: viewHeight}}>
             <circle cx={20} cy={20} r="5"></circle>
+            <rect x={188} y={200} width={10} height={10}></rect>
             <rect x={200} y={200} width={10} height={10}></rect>
             <rect x={212} y={200} width={10} height={10}></rect>
             <rect x={224} y={200} width={10} height={10}></rect>

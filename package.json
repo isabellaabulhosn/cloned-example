@@ -1,14 +1,14 @@
 {
-  "name": "react-parcel-example1",
+  "name": "cloned-example",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.html",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html --public-url https://alycianguyenn.github.io/react-parcel-example-1/; rm -rf docs; mv dist docs;",
+    "build": "parcel build index.html --public-url https://isabellaabulhosn.github.io/cloned-example/; rm -rf docs; mv dist docs;",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Alycia Nguyen",
+  "author": "Izzy Abulhosn",
   "license": "ISC",
   "dependencies": {
     "parcel": "^2.0.0-beta.2",

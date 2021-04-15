@@ -1,19 +1,17 @@
 import React from "react";
+import { csv } from "d3-fetch";
 
 const viewWidth = 500;
 const viewHeight = 500;
 
 const App = () => {
+    //fetch('https://raw.githubusercontent.com/isabellaabulhosn/cloned-example/main/weather.csv')
+        //.then(response => response.json())
+        //.then((data) => console.log(data))
+    csv('https://raw.githubusercontent.com/isabellaabulhosn/cloned-example/main/weather.csv')
+        .then((data) => console.log(data))
     return (
-        <svg style={{border: "1px solid lightgrey", width: viewWidth, height: viewHeight}}>
-            <circle cx={20} cy={20} r="5"></circle>
-            <rect x={188} y={200} width={10} height={10}></rect>
-            <rect x={200} y={200} width={10} height={10}></rect>
-            <rect x={212} y={200} width={10} height={10}></rect>
-            <rect x={224} y={200} width={10} height={10}></rect>
-            <rect x={236} y={200} width={10} height={10}></rect>
-            <rect x={248} y={200} width={10} height={10}></rect>
-        </svg>
+        <h1>Exploratory Data Analysis, Assignment 2, INFO 474 SP 2021</h1>
     );
 };
 

@@ -1,0 +1,38 @@
+var helpers = require("../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  var _react = require("react");
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _d3Fetch = require("d3-fetch");
+  var _jsxFileName = "/Users/isabellaabulhosn/Desktop/cloned-example/src/App.js";
+  const viewWidth = 500;
+  const viewHeight = 500;
+  const App = () => {
+    // fetch('https://raw.githubusercontent.com/isabellaabulhosn/cloned-example/main/weather.csv')
+    // .then(response => response.json())
+    // .then((data) => console.log(data))
+    _d3Fetch.csv('https://raw.githubusercontent.com/isabellaabulhosn/cloned-example/main/weather.csv').then(data => console.log(data));
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement("h1", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 14,
+          columnNumber: 9
+        }
+      }, "Exploratory Data Analysis, Assignment 2, INFO 474 SP 2021")
+    );
+  };
+  _c = App;
+  exports.default = App;
+  var _c;
+  $RefreshReg$(_c, "App");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

@@ -1,6 +1,7 @@
 // hooks.js
 import { csv } from "d3-fetch";
 import { useState, useEffect } from "react";
+
 const useFetch = (url) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -14,4 +15,5 @@ const useFetch = (url) => {
   }, []);
   return [data, loading];
 };
+
 export { useFetch };

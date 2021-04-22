@@ -1,0 +1,94 @@
+var helpers = require("../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  var _react = require("react");
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  require("d3-fetch");
+  var _hooksUseFetch = require("./hooks/useFetch");
+  var _jsxFileName = "/Users/isabellaabulhosn/Desktop/cloned-example/src/App.js", _s = $RefreshSig$();
+  const size = 500;
+  const margin = 20;
+  const App = () => {
+    _s();
+    // csv('https://raw.githubusercontent.com/isabellaabulhosn/cloned-example/main/weather.csv')
+    // .then((data) => console.log(data))
+    const [data, loading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/isabellaabulhosn/cloned-example/main/weather.csv");
+    console.log("from hook", loading, data);
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement("div", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 16,
+          columnNumber: 9
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 17,
+          columnNumber: 13
+        }
+      }, "Exploratory Data Analysis, Assignment 2, INFO 474 SP 2021"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 18,
+          columnNumber: 13
+        }
+      }, loading && "Loading data!"), /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 19,
+          columnNumber: 13
+        }
+      }, "Rendering circles :) this shows a distribution of TMAX"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
+        width: size,
+        height: size,
+        style: {
+          border: "1px solid black"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 20,
+          columnNumber: 13
+        }
+      }, data.slice(0, 300).map((measurement, index) => {
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("circle", {
+            key: index,
+            cx: size / 2,
+            cy: size - margin - measurement.TMAX,
+            r: "3",
+            fill: "none",
+            stroke: "black",
+            "stroke-opacity": ".2",
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 22,
+              columnNumber: 28
+            }
+          })
+        );
+      })))
+    );
+  };
+  _s(App, "Jm65JCcgUFoenM4DufkEA80vRVI=", false, function () {
+    return [_hooksUseFetch.useFetch];
+  });
+  _c = App;
+  exports.default = App;
+  var _c;
+  $RefreshReg$(_c, "App");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

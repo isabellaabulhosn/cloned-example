@@ -26272,21 +26272,19 @@ try {
   _parcelHelpers.defineInteropFlag(exports);
   var _react = require("react");
   var _reactDefault = _parcelHelpers.interopDefault(_react);
-  require("d3-fetch");
   var _hooksUseFetch = require("./hooks/useFetch");
   var _d3Scale = require("d3-scale");
   var _d3Array = require("d3-array");
   var _jsxFileName = "/Users/isabellaabulhosn/Desktop/cloned-example/src/App.js", _s = $RefreshSig$();
+  // import { geoNaturalEath1 } from "d3-geo-projection";
+  // import { scale } from "vega";
   const App = () => {
     _s();
-    // csv('https://raw.githubusercontent.com/isabellaabulhosn/cloned-example/main/weather.csv')
-    // .then((data) => console.log(data))
     const [data, loading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/isabellaabulhosn/cloned-example/main/weather.csv");
-    const dataSmallSample = data.slice(0, 300);
+    const dataSmallSample = data.slice(0, 5000);
     const TMAXextent = _d3Array.extent(dataSmallSample, d => {
       return +d.TMAX;
     });
-    console.log(TMAXextent);
     const size = 500;
     const margin = 20;
     const axisTextAlignmentFactor = 3;
@@ -26294,40 +26292,48 @@ try {
     const yScale = _d3Scale.scaleLinear().domain(TMAXextent).// unit: km
     range([size - margin, size - 350]);
     // unit: pixels
-    // const xScale = d3
-    // .scaleLinear()
-    // .domain([0, 42.195])
-    // .range([0 + margin, size - margin]);
+    _bins = _d3Array.bin().thresholds(30);
+    tmaxBins = _bins(data.map(d => {
+      return +d.TMAX;
+    }));
+    const histogramLeftPadding = 20;
     return (
       /*#__PURE__*/_reactDefault.default.createElement("div", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 32,
+          lineNumber: 38,
           columnNumber: 9
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 33,
+          lineNumber: 39,
           columnNumber: 13
         }
-      }, "Exploratory Data Analysis, Assignment 2, INFO 474 SP 2021"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+      }, "Exploratory Data Analysis INFO 474 SP 2021"), /*#__PURE__*/_reactDefault.default.createElement("h2", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 34,
+          lineNumber: 40,
+          columnNumber: 13
+        }
+      }, "Weather data"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 41,
           columnNumber: 13
         }
       }, loading && "Loading data!"), /*#__PURE__*/_reactDefault.default.createElement("h3", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 35,
+          lineNumber: 42,
           columnNumber: 13
         }
-      }, "Scales in D3"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
+      }, "Barcode Plot: Snowfall (in.) at Billings Logan International Airport"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
         width: size,
         height: size,
         style: {
@@ -26336,242 +26342,43 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 36,
+          lineNumber: 43,
           columnNumber: 13
         }
-      }, /*#__PURE__*/_reactDefault.default.createElement("text", {
-        x: size / 2 - 12,
-        y: yScale(0) + axisTextAlignmentFactor,
-        textAnchor: "end",
-        style: {
-          fontSize: 10,
-          fontFamily: "Gill Sans, sans serif"
-        },
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 37,
-          columnNumber: 17
-        }
-      }, "0"), /*#__PURE__*/_reactDefault.default.createElement("text", {
-        x: size / 2 - 12,
-        y: yScale(100) + axisTextAlignmentFactor,
-        textAnchor: "end",
-        style: {
-          fontSize: 10,
-          fontFamily: "Gill Sans, sans serif"
-        },
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 44,
-          columnNumber: 17
-        }
-      }, "100"), /*#__PURE__*/_reactDefault.default.createElement("line", {
-        x1: size / 2 - 10,
-        y1: yScale(100),
-        x2: size / 2 - 5,
-        y2: yScale(100),
-        stroke: "black",
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 51,
-          columnNumber: 17
-        }
-      }), /*#__PURE__*/_reactDefault.default.createElement("line", {
-        x1: size / 2 - 10,
-        y1: yScale(0),
-        x2: size / 2 - 5,
-        y2: yScale(0),
-        stroke: "black",
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 57,
-          columnNumber: 17
-        }
-      }), dataSmallSample.map((measurement, index) => {
-        const highlight = measurement.station === "KALISPELL GLACIER AP";
+      }, data.slice(0, 1000).map((measurement, index) => {
+        const highlight = measurement.station === "BILLINGS LOGAN INTL AP";
         return (
           /*#__PURE__*/_reactDefault.default.createElement("line", {
             key: index,
-            x1: size / 2,
-            y1: yScale(measurement.TMAX),
-            x2: size / 2 + 20,
-            y2: yScale(measurement.TMAX),
+            x1: size / 4,
+            y1: size - margin - measurement.SNOW,
+            x2: size / 4 + 20,
+            y2: size - margin - measurement.SNOW,
             stroke: highlight ? "red" : "steelblue",
             strokeOpacity: highlight ? 1 : 0.1,
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 66,
-              columnNumber: 25
+              lineNumber: 72,
+              columnNumber: 28
             }
           })
         );
-      })), /*#__PURE__*/_reactDefault.default.createElement("h3", {
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 77,
-          columnNumber: 13
-        }
-      }, "Scatterplot"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
-        width: size,
-        height: size,
-        style: {
-          border: "1px solid black"
-        },
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 78,
-          columnNumber: 13
-        }
-      }, dataSmallSample.map((measurement, index) => {
-        const highlight = measurement.station === "KALISPELL GLACIER AP";
-        return (
-          /*#__PURE__*/_reactDefault.default.createElement("circle", {
-            key: index,
-            cx: 100 - measurement.TMIN,
-            cy: size - margin - measurement.TMAX,
-            r: "3",
-            fill: "none",
-            stroke: highlight ? "red" : "steelblue",
-            strokeOpacity: ".2",
-            __self: undefined,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 82,
-              columnNumber: 25
-            }
-          })
-        );
-      })), /*#__PURE__*/_reactDefault.default.createElement("h3", {
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 93,
-          columnNumber: 13
-        }
-      }, "Barcode Plot: TMAX at Kalispell Glacier (sounds cold, expect it to be lower than average)"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
-        width: size,
-        height: size,
-        style: {
-          border: "1px solid black"
-        },
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 94,
-          columnNumber: 13
-        }
-      }, /*#__PURE__*/_reactDefault.default.createElement("text", {
-        x: size / 2 - 15,
-        textAnchor: "end",
-        y: size - margin + axisTextAlignmentFactor,
-        style: {
-          fontSize: 10,
-          fontFamily: "Gill Sans, sans serif"
-        },
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 95,
-          columnNumber: 17
-        }
-      }, "0"), /*#__PURE__*/_reactDefault.default.createElement("text", {
-        x: size / 2 - 15,
-        textAnchor: "end",
-        y: size - margin - 100 + axisTextAlignmentFactor,
-        style: {
-          fontSize: 10,
-          fontFamily: "Gill Sans, sans serif"
-        },
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 102,
-          columnNumber: 17
-        }
-      }, "100"), /*#__PURE__*/_reactDefault.default.createElement("line", {
-        x1: size / 2 - 10,
-        y1: size - margin - 100,
-        x2: size / 2 - 5,
-        y2: size - margin - 100,
-        stroke: "black",
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 109,
-          columnNumber: 17
-        }
-      }), /*#__PURE__*/_reactDefault.default.createElement("line", {
-        x1: size / 2 - 10,
-        y1: size - margin,
-        x2: size / 2 - 5,
-        y2: size - margin,
-        stroke: "black",
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 115,
-          columnNumber: 17
-        }
       }), data.slice(0, 1000).map((measurement, index) => {
-        const highlight = measurement.station === "KALISPELL GLACIER AP";
+        const highlight = measurement.station === "MISSOULA INTL AP";
         return (
           /*#__PURE__*/_reactDefault.default.createElement("line", {
             key: index,
-            x1: size / 2,
+            x1: size / 3,
             y1: size - margin - measurement.TMAX,
-            x2: size / 2 + 20,
+            x2: size / 3 + 20,
             y2: size - margin - measurement.TMAX,
             stroke: highlight ? "red" : "steelblue",
             strokeOpacity: highlight ? 1 : 0.1,
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 123,
-              columnNumber: 28
-            }
-          })
-        );
-      })), /*#__PURE__*/_reactDefault.default.createElement("h3", {
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 133,
-          columnNumber: 13
-        }
-      }, "Rendering circles :) this shows a distribution of TMAX"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
-        width: size,
-        height: size,
-        style: {
-          border: "1px solid black"
-        },
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 134,
-          columnNumber: 13
-        }
-      }, dataSmallSample.map((measurement, index) => {
-        const highlight = measurement.station === "KALISPELL GLACIER AP";
-        return (
-          /*#__PURE__*/_reactDefault.default.createElement("circle", {
-            key: index,
-            cx: size / 2,
-            cy: size - margin - measurement.TMAX,
-            r: "3",
-            fill: "none",
-            stroke: "steelblue",
-            strokeOpacity: ".2",
-            __self: undefined,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 137,
+              lineNumber: 83,
               columnNumber: 28
             }
           })
@@ -26592,7 +26399,42 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","d3-fetch":"3eyo6","./hooks/useFetch":"5YU3r","d3-scale":"2UZ4X","d3-array":"7CLUA","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"3eyo6":[function(require,module,exports) {
+},{"react":"3b2NM","./hooks/useFetch":"5YU3r","d3-scale":"2UZ4X","d3-array":"7CLUA","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"5YU3r":[function(require,module,exports) {
+var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  _parcelHelpers.export(exports, "useFetch", function () {
+    return useFetch;
+  });
+  var _d3Fetch = require("d3-fetch");
+  var _react = require("react");
+  var _s = $RefreshSig$();
+  const useFetch = url => {
+    _s();
+    const [data, setData] = _react.useState([]);
+    const [loading, setLoading] = _react.useState(true);
+    async function fetchUrl() {
+      const response = await _d3Fetch.csv(url);
+      setData(response);
+      setLoading(false);
+    }
+    _react.useEffect(() => {
+      fetchUrl();
+    }, []);
+    return [data, loading];
+  };
+  _s(useFetch, "YP7e7Smzxlgf2d3MqLcgRZjo83U=");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+
+},{"d3-fetch":"3eyo6","react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"3eyo6":[function(require,module,exports) {
 var define;
 // https://d3js.org/d3-fetch/ v2.0.0 Copyright 2020 Mike Bostock
 (function (global, factory) {
@@ -26857,42 +26699,7 @@ var define;
   });
 });
 
-},{}],"5YU3r":[function(require,module,exports) {
-var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-helpers.prelude(module);
-try {
-  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-  _parcelHelpers.defineInteropFlag(exports);
-  _parcelHelpers.export(exports, "useFetch", function () {
-    return useFetch;
-  });
-  var _d3Fetch = require("d3-fetch");
-  var _react = require("react");
-  var _s = $RefreshSig$();
-  const useFetch = url => {
-    _s();
-    const [data, setData] = _react.useState([]);
-    const [loading, setLoading] = _react.useState(true);
-    async function fetchUrl() {
-      const response = await _d3Fetch.csv(url);
-      setData(response);
-      setLoading(false);
-    }
-    _react.useEffect(() => {
-      fetchUrl();
-    }, []);
-    return [data, loading];
-  };
-  _s(useFetch, "YP7e7Smzxlgf2d3MqLcgRZjo83U=");
-  helpers.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-
-},{"d3-fetch":"3eyo6","react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"5gA8y":[function(require,module,exports) {
+},{}],"5gA8y":[function(require,module,exports) {
 "use strict";
 
 exports.interopDefault = function (a) {

@@ -1,0 +1,335 @@
+var helpers = require("../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  var _react = require("react");
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  require("d3-fetch");
+  var _hooksUseFetch = require("./hooks/useFetch");
+  var _d3Scale = require("d3-scale");
+  var _d3Array = require("d3-array");
+  var _jsxFileName = "/Users/isabellaabulhosn/Desktop/cloned-example/src/App.js", _s = $RefreshSig$();
+  const App = () => {
+    _s();
+    // csv('https://raw.githubusercontent.com/isabellaabulhosn/cloned-example/main/weather.csv')
+    // .then((data) => console.log(data))
+    const [data, loading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/isabellaabulhosn/cloned-example/main/weather.csv");
+    const dataSmallSample = data.slice(0, 300);
+    const TMAXextent = _d3Array.extent(dataSmallSample, d => {
+      return +d.TMAX;
+    });
+    console.log(TMAXextent);
+    const size = 500;
+    const margin = 20;
+    const axisTextAlignmentFactor = 3;
+    const maxValueOfTMAX = _d3Array.max([1, 2, 3]);
+    const yScale = _d3Scale.scaleLinear().domain(TMAXextent).// unit: km
+    range([size - margin, size - 350]);
+    // unit: pixels
+    // const xScale = d3
+    // .scaleLinear()
+    // .domain([0, 42.195])
+    // .range([0 + margin, size - margin]);
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement("div", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 32,
+          columnNumber: 9
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 33,
+          columnNumber: 13
+        }
+      }, "Exploratory Data Analysis, Assignment 2, INFO 474 SP 2021"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 34,
+          columnNumber: 13
+        }
+      }, loading && "Loading data!"), /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 35,
+          columnNumber: 13
+        }
+      }, "Bins"), /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 36,
+          columnNumber: 13
+        }
+      }, "Scales in D3"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
+        width: size,
+        height: size,
+        style: {
+          border: "1px solid black"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 37,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size / 2 - 12,
+        y: yScale(0) + axisTextAlignmentFactor,
+        textAnchor: "end",
+        style: {
+          fontSize: 10,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 38,
+          columnNumber: 17
+        }
+      }, "0"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size / 2 - 12,
+        y: yScale(100) + axisTextAlignmentFactor,
+        textAnchor: "end",
+        style: {
+          fontSize: 10,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 45,
+          columnNumber: 17
+        }
+      }, "100"), /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: size / 2 - 10,
+        y1: yScale(100),
+        x2: size / 2 - 5,
+        y2: yScale(100),
+        stroke: "black",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 52,
+          columnNumber: 17
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: size / 2 - 10,
+        y1: yScale(0),
+        x2: size / 2 - 5,
+        y2: yScale(0),
+        stroke: "black",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 58,
+          columnNumber: 17
+        }
+      }), dataSmallSample.map((measurement, index) => {
+        const highlight = measurement.station === "KALISPELL GLACIER AP";
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("line", {
+            key: index,
+            x1: size / 2,
+            y1: yScale(measurement.TMAX),
+            x2: size / 2 + 20,
+            y2: yScale(measurement.TMAX),
+            stroke: highlight ? "red" : "steelblue",
+            strokeOpacity: highlight ? 1 : 0.1,
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 67,
+              columnNumber: 25
+            }
+          })
+        );
+      })), /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 78,
+          columnNumber: 13
+        }
+      }, "Scatterplot"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
+        width: size,
+        height: size,
+        style: {
+          border: "1px solid black"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 79,
+          columnNumber: 13
+        }
+      }, dataSmallSample.map((measurement, index) => {
+        const highlight = measurement.station === "KALISPELL GLACIER AP";
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("circle", {
+            key: index,
+            cx: 100 - measurement.TMIN,
+            cy: size - margin - measurement.TMAX,
+            r: "3",
+            fill: "none",
+            stroke: highlight ? "red" : "steelblue",
+            strokeOpacity: ".2",
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 83,
+              columnNumber: 25
+            }
+          })
+        );
+      })), /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 94,
+          columnNumber: 13
+        }
+      }, "Barcode Plot: TMAX at Kalispell Glacier (sounds cold, expect it to be lower than average)"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
+        width: size,
+        height: size,
+        style: {
+          border: "1px solid black"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 95,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size / 2 - 15,
+        textAnchor: "end",
+        y: size - margin + axisTextAlignmentFactor,
+        style: {
+          fontSize: 10,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 96,
+          columnNumber: 17
+        }
+      }, "0"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size / 2 - 15,
+        textAnchor: "end",
+        y: size - margin - 100 + axisTextAlignmentFactor,
+        style: {
+          fontSize: 10,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 103,
+          columnNumber: 17
+        }
+      }, "100"), /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: size / 2 - 10,
+        y1: size - margin - 100,
+        x2: size / 2 - 5,
+        y2: size - margin - 100,
+        stroke: "black",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 110,
+          columnNumber: 17
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: size / 2 - 10,
+        y1: size - margin,
+        x2: size / 2 - 5,
+        y2: size - margin,
+        stroke: "black",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 116,
+          columnNumber: 17
+        }
+      }), data.slice(0, 1000).map((measurement, index) => {
+        const highlight = measurement.station === "KALISPELL GLACIER AP";
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("line", {
+            key: index,
+            x1: size / 2,
+            y1: size - margin - measurement.TMAX,
+            x2: size / 2 + 20,
+            y2: size - margin - measurement.TMAX,
+            stroke: highlight ? "red" : "steelblue",
+            strokeOpacity: highlight ? 1 : 0.1,
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 124,
+              columnNumber: 28
+            }
+          })
+        );
+      })), /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 134,
+          columnNumber: 13
+        }
+      }, "Rendering circles :) this shows a distribution of TMAX"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
+        width: size,
+        height: size,
+        style: {
+          border: "1px solid black"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 135,
+          columnNumber: 13
+        }
+      }, dataSmallSample.map((measurement, index) => {
+        const highlight = measurement.station === "KALISPELL GLACIER AP";
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("circle", {
+            key: index,
+            cx: size / 2,
+            cy: size - margin - measurement.TMAX,
+            r: "3",
+            fill: "none",
+            stroke: "steelblue",
+            strokeOpacity: ".2",
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 138,
+              columnNumber: 28
+            }
+          })
+        );
+      })))
+    );
+  };
+  _s(App, "Jm65JCcgUFoenM4DufkEA80vRVI=", false, function () {
+    return [_hooksUseFetch.useFetch];
+  });
+  _c = App;
+  exports.default = App;
+  var _c;
+  $RefreshReg$(_c, "App");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

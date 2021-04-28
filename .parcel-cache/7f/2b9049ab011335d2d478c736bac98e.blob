@@ -1,0 +1,116 @@
+var helpers = require("../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  var _react = require("react");
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _hooksUseFetch = require("./hooks/useFetch");
+  var _d3Scale = require("d3-scale");
+  var _d3Array = require("d3-array");
+  var _jsxFileName = "/Users/isabellaabulhosn/Desktop/cloned-example/src/App.js", _s = $RefreshSig$();
+  // import { geoNaturalEath1 } from "d3-geo-projection";
+  // import { scale } from "vega";
+  const App = () => {
+    _s();
+    const [data, loading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/isabellaabulhosn/cloned-example/main/weather.csv");
+    const dataSmallSample = data.slice(0, 5000);
+    const TMAXextent = _d3Array.extent(dataSmallSample, d => {
+      return +d.TMAX;
+    });
+    const size = 500;
+    const margin = 20;
+    const axisTextAlignmentFactor = 3;
+    const maxValueOfTMAX = _d3Array.max([1, 2, 3]);
+    const yScale = _d3Scale.scaleLinear().domain(TMAXextent).// unit: km
+    range([size - margin, size - 350]);
+    // unit: pixels
+    _bins = _d3Array.bin().thresholds(30);
+    tmaxBins = _bins(data.map(d => {
+      return +d.TMAX;
+    }));
+    const histogramLeftPadding = 20;
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement("div", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 38,
+          columnNumber: 9
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 39,
+          columnNumber: 13
+        }
+      }, "Exploratory Data Analysis INFO 474 SP 2021"), /*#__PURE__*/_reactDefault.default.createElement("h2", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 40,
+          columnNumber: 13
+        }
+      }, "Weather data"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 41,
+          columnNumber: 13
+        }
+      }, loading && "Loading data!"), /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 42,
+          columnNumber: 13
+        }
+      }, "Barcode Plot: Snowfall (in.) at Billings Logan International Airport"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
+        width: size,
+        height: size,
+        style: {
+          border: "1px solid black"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 43,
+          columnNumber: 13
+        }
+      }, data.slice(0, 1000).map((measurement, index) => {
+        const highlight = measurement.station === "BILLINGS LOGAN INTL AP";
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("line", {
+            key: index,
+            x1: size / 4,
+            y1: size - margin - measurement.SNOW + margin,
+            x2: size / 4 + 20,
+            y2: size - margin - measurement.SNOW + margin,
+            stroke: highlight ? "red" : "steelblue",
+            strokeOpacity: highlight ? 1 : 0.1,
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 72,
+              columnNumber: 28
+            }
+          })
+        );
+      })))
+    );
+  };
+  _s(App, "Jm65JCcgUFoenM4DufkEA80vRVI=", false, function () {
+    return [_hooksUseFetch.useFetch];
+  });
+  _c = App;
+  exports.default = App;
+  var _c;
+  $RefreshReg$(_c, "App");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

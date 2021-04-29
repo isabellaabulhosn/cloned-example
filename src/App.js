@@ -11,7 +11,6 @@ const App = () => {
         "https://raw.githubusercontent.com/isabellaabulhosn/cloned-example/main/montana.csv"
     );
     const dataSmallSample = data.slice(0, 5000);
-    //const randomSmallSample = _.sample(data, 5000)
 
     const TMAXextent = extent(dataSmallSample, (d) => {
         return +d.TMAX;

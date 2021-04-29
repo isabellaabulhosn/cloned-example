@@ -1,0 +1,1013 @@
+var helpers = require("../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  var _react = require("react");
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _hooksUseFetch = require("./hooks/useFetch");
+  var _d3Scale = require("d3-scale");
+  var _d3Array = require("d3-array");
+  var _jsxFileName = "/Users/isabellaabulhosn/Desktop/cloned-example/src/App.js", _s = $RefreshSig$();
+  // import { geoNaturalEath1 } from "d3-geo-projection";
+  // import { scale } from "vega";
+  const App = () => {
+    _s();
+    const [data, loading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/isabellaabulhosn/cloned-example/main/montana.csv");
+    const dataSmallSample = data.slice(0, 5000);
+    const TMAXextent = _d3Array.extent(dataSmallSample, d => {
+      return +d.TMAX;
+    });
+    const AWNDextent = _d3Array.extent(data, d => {
+      return +d.AWND;
+    });
+    const SNOWextent = _d3Array.extent(data, d => {
+      return +d.SNOW;
+    });
+    const size = 500;
+    const margin = 50;
+    const axisTextAlignmentFactor = 6;
+    const barcodeLength = 100;
+    const tickLength = 8;
+    const numSize = 15;
+    const maxValueOfTMAX = _d3Array.max([1, 2, 3]);
+    const yScale = _d3Scale.scaleLinear().domain(TMAXextent).// unit: km
+    range([size - margin, size - 50]);
+    // unit: pixels
+    const yScaleWind = _d3Scale.scaleLinear().domain(AWNDextent).// unit: km
+    range([size - margin, margin]);
+    // unit: pixels
+    const yScaleSnow = _d3Scale.scaleLinear().domain(SNOWextent).// unit: km
+    range([size - margin, margin]);
+    // unit: pixels
+    _bins = _d3Array.bin().thresholds(15);
+    tmaxBins = _bins(data.map(d => {
+      return +d.SNWD;
+    }));
+    const histogramLeftPadding = 10;
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement("div", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 57,
+          columnNumber: 9
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 58,
+          columnNumber: 13
+        }
+      }, "Exploratory Data Analysis INFO 474 SP 2021"), /*#__PURE__*/_reactDefault.default.createElement("h2", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 59,
+          columnNumber: 13
+        }
+      }, "Montana Weather Data"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 60,
+          columnNumber: 13
+        }
+      }, loading && "Loading data!"), /*#__PURE__*/_reactDefault.default.createElement("div", {
+        id: "plot1",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 61,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 62,
+          columnNumber: 17
+        }
+      }, "Barcode Plot: Average Daily Wind Speed (mph)"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 63,
+          columnNumber: 17
+        }
+      }, "Kalispell Glacier Airport vs. Missoula Intl Airport"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
+        width: size,
+        height: size,
+        style: {
+          border: "1px solid black"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 64,
+          columnNumber: 17
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: barcodeLength,
+        textAnchor: "end",
+        y: size - margin + axisTextAlignmentFactor,
+        style: {
+          fontSize: 15,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 66,
+          columnNumber: 21
+        }
+      }, "0"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: barcodeLength,
+        textAnchor: "end",
+        y: margin + axisTextAlignmentFactor / 2,
+        style: {
+          fontSize: 15,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 74,
+          columnNumber: 21
+        }
+      }, "37"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size - barcodeLength + axisTextAlignmentFactor,
+        textAnchor: "end",
+        y: size - margin + axisTextAlignmentFactor,
+        style: {
+          fontSize: 15,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 82,
+          columnNumber: 21
+        }
+      }, "0"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size - barcodeLength + axisTextAlignmentFactor * 2,
+        textAnchor: "end",
+        y: margin + axisTextAlignmentFactor / 2,
+        style: {
+          fontSize: 15,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 90,
+          columnNumber: 21
+        }
+      }, "37"), /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: size / 4 - tickLength,
+        y1: margin,
+        x2: size / 4 - tickLength * 2,
+        y2: margin,
+        stroke: "black",
+        "stroke-width": "3",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 98,
+          columnNumber: 21
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: size / 4 - tickLength,
+        y1: size - margin,
+        x2: size / 4 - tickLength * 2,
+        y2: size - margin,
+        stroke: "black",
+        "stroke-width": "3",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 106,
+          columnNumber: 21
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: size - size / 4 + tickLength * 2,
+        y1: margin,
+        x2: size - size / 4 + tickLength,
+        y2: margin,
+        stroke: "black",
+        "stroke-width": "3",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 114,
+          columnNumber: 21
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: size - size / 4 + tickLength * 2,
+        y1: size - margin,
+        x2: size - size / 4 + tickLength,
+        y2: size - margin,
+        stroke: "black",
+        "stroke-width": "3",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 122,
+          columnNumber: 21
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size / 3 + margin / 2,
+        textAnchor: "end",
+        y: size - margin / 2.5,
+        style: {
+          fontSize: 18,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 130,
+          columnNumber: 21
+        }
+      }, "Kallispell"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size - size / 4 - margin / 2,
+        textAnchor: "end",
+        y: size - margin / 2.5,
+        style: {
+          fontSize: 18,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 138,
+          columnNumber: 21
+        }
+      }, "Missoula"), data.map((measurement, index) => {
+        const highlight = measurement.station === "KALISPELL GLACIER AP";
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("line", {
+            key: index,
+            x1: size / 4,
+            y1: yScaleWind(measurement.AWND),
+            x2: size / 4 + barcodeLength,
+            y2: yScaleWind(measurement.AWND),
+            stroke: highlight ? "darkorange" : "steelblue",
+            strokeOpacity: highlight ? 1 : 0.1,
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 147,
+              columnNumber: 32
+            }
+          })
+        );
+      }), data.map((measurement, index) => {
+        const highlight = measurement.station === "MISSOULA INTL AP";
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("line", {
+            key: index,
+            x1: size - size / 4 - barcodeLength,
+            y1: yScaleWind(measurement.AWND),
+            x2: size - size / 4,
+            y2: yScaleWind(measurement.AWND),
+            stroke: highlight ? "darkorange" : "steelblue",
+            strokeOpacity: highlight ? 1 : 0.1,
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 158,
+              columnNumber: 32
+            }
+          })
+        );
+      })), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 168,
+          columnNumber: 17
+        }
+      }, "I wanted to use this data to compare the Kalispell Glacier Airport and the Missoula International Airport.  These are the 2 airports I would fly into when I go to Montana, and I was wondering if I could gain some insight into which have better or worse weather which could be tied into flight times or delays."), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 169,
+          columnNumber: 17
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 169,
+          columnNumber: 20
+        }
+      }, "Insight #1"), ": Compared to all of the weather stations in Montana, the airport at Kalispell has average daily wind speeds mostly on the lower end.  The highest wind speeds the Kalispell airports get are around 15mph."), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 170,
+          columnNumber: 17
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 170,
+          columnNumber: 20
+        }
+      }, "Insight #2"), ": Compared to all of the weather stations in Montant, the airport in Missoula has fairly low average daily wind speeds, but one day had a pretty high wind speed of about 20ish mph."), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 171,
+          columnNumber: 17
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 171,
+          columnNumber: 20
+        }
+      }, "Insight #3"), ": In comparison to each other, it seems the Missoula airport has lower wind speeds on average, aside from a few outliers.")), /*#__PURE__*/_reactDefault.default.createElement("div", {
+        id: "plot2",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 173,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 174,
+          columnNumber: 17
+        }
+      }, "Barcode Plot: Average Snowfall (in)"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 175,
+          columnNumber: 17
+        }
+      }, "Kalispell Glacier Airport vs. Missoula Intl Airport"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
+        width: size,
+        height: size,
+        style: {
+          border: "1px solid black"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 176,
+          columnNumber: 17
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: barcodeLength,
+        textAnchor: "end",
+        y: size - margin + axisTextAlignmentFactor,
+        style: {
+          fontSize: 10,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 178,
+          columnNumber: 21
+        }
+      }, "0"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: barcodeLength,
+        textAnchor: "end",
+        y: margin + axisTextAlignmentFactor / 2,
+        style: {
+          fontSize: 10,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 186,
+          columnNumber: 21
+        }
+      }, "37"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size - barcodeLength,
+        textAnchor: "end",
+        y: size - margin + axisTextAlignmentFactor,
+        style: {
+          fontSize: 10,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 194,
+          columnNumber: 21
+        }
+      }, "0"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size - barcodeLength + axisTextAlignmentFactor * 4,
+        textAnchor: "end",
+        y: margin + axisTextAlignmentFactor / 2,
+        style: {
+          fontSize: 10,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 202,
+          columnNumber: 21
+        }
+      }, "37"), /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: size / 4 - tickLength,
+        y1: margin,
+        x2: size / 4 - tickLength * 2,
+        y2: margin,
+        stroke: "black",
+        "stroke-width": "3",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 210,
+          columnNumber: 21
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: size / 4 - tickLength,
+        y1: size - margin,
+        x2: size / 4 - tickLength * 2,
+        y2: size - margin,
+        stroke: "black",
+        "stroke-width": "3",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 218,
+          columnNumber: 21
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: size - size / 4 + tickLength * 2,
+        y1: margin,
+        x2: size - size / 4 + tickLength,
+        y2: margin,
+        stroke: "black",
+        "stroke-width": "3",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 226,
+          columnNumber: 21
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: size - size / 4 + tickLength * 2,
+        y1: size - margin,
+        x2: size - size / 4 + tickLength,
+        y2: size - margin,
+        stroke: "black",
+        "stroke-width": "3",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 234,
+          columnNumber: 21
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size / 3 + margin / 2,
+        textAnchor: "end",
+        y: size - margin / 2.5,
+        style: {
+          fontSize: 18,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 242,
+          columnNumber: 21
+        }
+      }, "Kallispell"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size - size / 4 - margin / 2,
+        textAnchor: "end",
+        y: size - margin / 2.5,
+        style: {
+          fontSize: 18,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 250,
+          columnNumber: 21
+        }
+      }, "Missoula"), data.map((measurement, index) => {
+        const highlight = measurement.station === "KALISPELL GLACIER AP";
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("line", {
+            key: index,
+            x1: size / 4,
+            y1: yScaleSnow(measurement.SNOW),
+            x2: size / 4 + barcodeLength,
+            y2: yScaleSnow(measurement.SNOW),
+            stroke: highlight ? "darkorange" : "steelblue",
+            strokeOpacity: highlight ? 1 : 0.1,
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 259,
+              columnNumber: 32
+            }
+          })
+        );
+      }), data.map((measurement, index) => {
+        const highlight = measurement.station === "MISSOULA INTL AP";
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("line", {
+            key: index,
+            x1: size - size / 4 - barcodeLength,
+            y1: yScaleSnow(measurement.SNOW),
+            x2: size - size / 4,
+            y2: yScaleSnow(measurement.SNOW),
+            stroke: highlight ? "darkorange" : "steelblue",
+            strokeOpacity: highlight ? 1 : 0.1,
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 270,
+              columnNumber: 32
+            }
+          })
+        );
+      })), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 280,
+          columnNumber: 17
+        }
+      }, "I next wanted to look at average snowfall which has impacted my flights' landing times before."), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 281,
+          columnNumber: 17
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 281,
+          columnNumber: 20
+        }
+      }, "Insight #4"), ": Compared to all of the weather stations in Montana, the airport at Kalispell got the highest average snowfall in a day."), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 282,
+          columnNumber: 17
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 282,
+          columnNumber: 20
+        }
+      }, "Insight #5"), ": Compared to all of the weather stations in Montant, the airport in Missoula seems like it gets a consistent amount of snow.  Only a few other weather stations are getting more average snowfall."), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 283,
+          columnNumber: 17
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 283,
+          columnNumber: 20
+        }
+      }, "Insight #6"), ": In comparison to each other, based on this data it seems like there isn't a huge difference in snowfall between the two airports, aside from the one day Kalispell got the highest snowfall.")), /*#__PURE__*/_reactDefault.default.createElement("div", {
+        id: "plot3",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 285,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 286,
+          columnNumber: 17
+        }
+      }, "Scatterplot: Minimum vs. Maximum Temperature (F)"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 287,
+          columnNumber: 17
+        }
+      }, "Focusing on Many Glacier"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
+        width: size,
+        height: size,
+        style: {
+          border: "1px solid black"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 288,
+          columnNumber: 17
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: margin * 2,
+        y1: margin * 3,
+        x2: margin * 2,
+        y2: size - margin * 2,
+        stroke: "black",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 290,
+          columnNumber: 21
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: margin * 2,
+        y1: size - margin * 2,
+        x2: size - margin * 2,
+        y2: size - margin * 2,
+        stroke: "black",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 297,
+          columnNumber: 21
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: margin * 2 - axisTextAlignmentFactor,
+        textAnchor: "end",
+        y: size - margin * 2 + axisTextAlignmentFactor * 2,
+        style: {
+          fontSize: 10,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 304,
+          columnNumber: 21
+        }
+      }, "-40"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: margin * 2 - axisTextAlignmentFactor * 2,
+        textAnchor: "end",
+        y: margin * 3 + axisTextAlignmentFactor * 2,
+        style: {
+          fontSize: 10,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 312,
+          columnNumber: 21
+        }
+      }, "110"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size - margin * 2,
+        textAnchor: "end",
+        y: size - margin * 2 + axisTextAlignmentFactor * 4,
+        style: {
+          fontSize: 10,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 320,
+          columnNumber: 21
+        }
+      }, "100"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size / 2,
+        textAnchor: "end",
+        y: size - margin * 2 + axisTextAlignmentFactor * 4,
+        style: {
+          fontSize: 8,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 328,
+          columnNumber: 21
+        }
+      }, "Min Temp"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: margin * 2 - axisTextAlignmentFactor,
+        textAnchor: "end",
+        y: size / 2,
+        style: {
+          fontSize: 8,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 336,
+          columnNumber: 21
+        }
+      }, "Max Temp"), data.map((measurement, index) => {
+        if (measurement.station === "Many Glacier") {
+          return null;
+        }
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("circle", {
+            key: index,
+            cx: 250 + +measurement.TMIN,
+            cy: size - margin - 150 - +measurement.TMAX,
+            r: "1",
+            fill: "rgba(27, 51, 71, .05)",
+            stroke: "none",
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 348,
+              columnNumber: 29
+            }
+          })
+        );
+      }), data.map((measurement, index) => {
+        if (measurement.station !== "Many Glacier") {
+          return null;
+        }
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("circle", {
+            key: index,
+            cx: 250 + +measurement.TMIN,
+            cy: size - margin - 150 - +measurement.TMAX,
+            r: "1",
+            fill: "rgba(100, 0, 0, 1)",
+            stroke: "none",
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 362,
+              columnNumber: 29
+            }
+          })
+        );
+      })), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 372,
+          columnNumber: 17
+        }
+      }, "I also wanted to look into the temperatures of two different places in Glacier National Park.  It is so big and I know the temperatures can drastically vary."), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 373,
+          columnNumber: 17
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 373,
+          columnNumber: 20
+        }
+      }, "Insight #7"), ": This graph was slightly hard to get the axes because the minimum temperatures weren't 0.  The ranges of TMAX was about -10 to 110.  The ranges of TMIN were about -35 to 80."), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 374,
+          columnNumber: 17
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 374,
+          columnNumber: 20
+        }
+      }, "Insight #8"), ": You can see Many Glacier has some of the lowest temperatures compared to the rest of Montana.  There are a few extreme outliers.")), /*#__PURE__*/_reactDefault.default.createElement("div", {
+        id: "plot4",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 376,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 377,
+          columnNumber: 17
+        }
+      }, "Scatterplot: Minimum vs. Maximum Temperature (F)"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 378,
+          columnNumber: 17
+        }
+      }, "Focusing on Kalispell Glacier Airport"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
+        width: size,
+        height: size,
+        style: {
+          border: "1px solid black"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 379,
+          columnNumber: 17
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: margin * 2,
+        y1: margin * 3,
+        x2: margin * 2,
+        y2: size - margin * 2,
+        stroke: "black",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 381,
+          columnNumber: 21
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: margin * 2,
+        y1: size - margin * 2,
+        x2: size - margin * 2,
+        y2: size - margin * 2,
+        stroke: "black",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 388,
+          columnNumber: 21
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: margin * 2 - axisTextAlignmentFactor,
+        textAnchor: "end",
+        y: size - margin * 2 + axisTextAlignmentFactor * 2,
+        style: {
+          fontSize: 10,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 395,
+          columnNumber: 21
+        }
+      }, "-40"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: margin * 2 - axisTextAlignmentFactor * 2,
+        textAnchor: "end",
+        y: margin * 3 + axisTextAlignmentFactor * 2,
+        style: {
+          fontSize: 10,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 403,
+          columnNumber: 21
+        }
+      }, "110"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size - margin * 2,
+        textAnchor: "end",
+        y: size - margin * 2 + axisTextAlignmentFactor * 4,
+        style: {
+          fontSize: 10,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 411,
+          columnNumber: 21
+        }
+      }, "100"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size / 2,
+        textAnchor: "end",
+        y: size - margin * 2 + axisTextAlignmentFactor * 4,
+        style: {
+          fontSize: 8,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 419,
+          columnNumber: 21
+        }
+      }, "Min Temp"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: margin * 2 - axisTextAlignmentFactor,
+        textAnchor: "end",
+        y: size / 2,
+        style: {
+          fontSize: 8,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 427,
+          columnNumber: 21
+        }
+      }, "Max Temp"), data.map((measurement, index) => {
+        if (measurement.station === "KALISPELL GLACIER AP") {
+          return null;
+        }
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("circle", {
+            key: index,
+            cx: 125 + +measurement.TMIN,
+            cy: size - margin - 75 - +measurement.TMAX,
+            r: "1",
+            fill: "rgba(27, 51, 71, .05)",
+            stroke: "none",
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 439,
+              columnNumber: 29
+            }
+          })
+        );
+      }), data.map((measurement, index) => {
+        if (measurement.station !== "KALISPELL GLACIER AP") {
+          return null;
+        }
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("circle", {
+            key: index,
+            cx: 250 + +measurement.TMIN,
+            cy: size - margin - 150 - +measurement.TMAX,
+            r: "1",
+            fill: "rgba(100, 0, 0, 1)",
+            stroke: "none",
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 453,
+              columnNumber: 29
+            }
+          })
+        );
+      })), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 463,
+          columnNumber: 17
+        }
+      }, "This time I focused on the Kalispell Glacier Airport."), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 464,
+          columnNumber: 17
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 464,
+          columnNumber: 20
+        }
+      }, "Insight #9"), ": I see that this weather station has a few outliers as well but less than Many Glacier."), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 465,
+          columnNumber: 17
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 465,
+          columnNumber: 20
+        }
+      }, "Insight #10"), ": There is a more concentrated cluster of higher temperatures than at Many Glacier.")))
+    );
+  };
+  _s(App, "Jm65JCcgUFoenM4DufkEA80vRVI=", false, function () {
+    return [_hooksUseFetch.useFetch];
+  });
+  _c = App;
+  exports.default = App;
+  var _c;
+  $RefreshReg$(_c, "App");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

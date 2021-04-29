@@ -24,9 +24,12 @@ const App = () => {
         return +d.SNOW;
     });
         
-    const size = 300;
-    const margin = 25;
-    const axisTextAlignmentFactor = 3;
+    const size = 500;
+    const margin = 50;
+    const axisTextAlignmentFactor = 6;
+    const barcodeLength = 100;
+    const tickLength = 8;
+    const numSize = 15;
     const maxValueOfTMAX = max([1, 2, 3]);
 
     const yScale = scaleLinear()
@@ -61,78 +64,82 @@ const App = () => {
                 <svg width={size} height={size} style={{ border: "1px solid black" }}>
                     {/* left 0 */}
                     <text 
-                    x={50} 
+                    x={barcodeLength} 
                     textAnchor="end"
                     y={size - margin + axisTextAlignmentFactor} 
-                    style={{ fontSize: 10, fontFamily: "Gill Sans, sans serif" }}>
+                    style={{ fontSize: 15, fontFamily: "Gill Sans, sans serif" }}>
                         0
                     </text>
                     {/* left 37 */}
                     <text 
-                    x={50} 
+                    x={barcodeLength} 
                     textAnchor="end"
                     y={margin + axisTextAlignmentFactor / 2} 
-                    style={{ fontSize: 10, fontFamily: "Gill Sans, sans serif" }}>
+                    style={{ fontSize: 15, fontFamily: "Gill Sans, sans serif" }}>
                         37
                     </text>
                     {/* right 0 */}
                     <text 
-                    x={size - 50} 
+                    x={size - barcodeLength + axisTextAlignmentFactor} 
                     textAnchor="end"
                     y={size - margin + axisTextAlignmentFactor} 
-                    style={{ fontSize: 10, fontFamily: "Gill Sans, sans serif" }}>
+                    style={{ fontSize: 15, fontFamily: "Gill Sans, sans serif" }}>
                         0
                     </text>
                     {/* right 37 */}
                     <text 
-                    x={size - 50 + axisTextAlignmentFactor * 4} 
+                    x={size - barcodeLength + axisTextAlignmentFactor * 3} 
                     textAnchor="end"
                     y={margin + axisTextAlignmentFactor / 2} 
-                    style={{ fontSize: 10, fontFamily: "Gill Sans, sans serif" }}>
+                    style={{ fontSize: 15, fontFamily: "Gill Sans, sans serif" }}>
                         37
                     </text>
                     {/* left 37 tick */}
                     <line 
-                        x1={size / 4 - 5} 
+                        x1={size / 4 - tickLength} 
                         y1={margin} 
-                        x2={size / 4 - 10} 
+                        x2={size / 4 - tickLength * 2} 
                         y2={margin}
-                        stroke={"black"} />
+                        stroke={"black"}
+                        stroke-width= {"3"} />
                     {/* left 0 tick */}
                     <line
-                        x1={size / 4 - 5}
+                        x1={size / 4 - tickLength}
                         y1={size - margin}
-                        x2={size / 4 - 10}
+                        x2={size / 4 - tickLength * 2}
                         y2={size - margin}
-                        stroke={"black"}/>
+                        stroke={"black"} 
+                        stroke-width= {"3"} />
                     {/* right 37 tick */}
                     <line 
-                        x1={size - (size / 4) + 10} 
+                        x1={size - (size / 4) + tickLength * 2} 
                         y1={margin} 
-                        x2={size - (size / 4) + 5} 
+                        x2={size - (size / 4) + tickLength} 
                         y2={margin}
-                        stroke={"black"} />
+                        stroke={"black"} 
+                        stroke-width= {"3"} />
                     {/* right 0 tick */}
                     <line
-                        x1={size - (size / 4) + 10}
+                        x1={size - (size / 4) + tickLength * 2}
                         y1={size - margin}
-                        x2={size - (size / 4) + 5}
+                        x2={size - (size / 4) + tickLength}
                         y2={size - margin}
-                        stroke={"black"}/>
+                        stroke={"black"}
+                        stroke-width= {"3"} />
                     {/* left label */}
                     <text 
-                    x={size / 4 + 30} 
+                    x={size / 3 + margin / 2} 
                     textAnchor="end"
                     y={size - margin / 2.5} 
-                    style={{ fontSize: 8, fontFamily: "Gill Sans, sans serif" }}>
+                    style={{ fontSize: 18, fontFamily: "Gill Sans, sans serif" }}>
                         Kallispell
                     </text>
                     {/* right label */}
                     <text 
-                    x={size - (size / 4)} 
+                    x={size - (size / 4) - margin / 2} 
                     textAnchor="end"
                     y={size - margin / 2.5} 
-                    style={{ fontSize: 8, fontFamily: "Gill Sans, sans serif" }}>
+                    style={{ fontSize: 18, fontFamily: "Gill Sans, sans serif" }}>
                         Missoula
                     </text>
                     {data.map((measurement, index) => {
@@ -141,7 +148,7 @@ const App = () => {
                         key={index} 
                         x1={size / 4} 
                         y1={yScaleWind(measurement.AWND)} 
-                        x2={size / 4 + 30} 
+                        x2={size / 4 + barcodeLength} 
                         y2={yScaleWind(measurement.AWND)}
                         stroke={highlight ? "darkorange" : "steelblue"} 
                         strokeOpacity ={highlight ? 1 : 0.1} />
@@ -150,7 +157,7 @@ const App = () => {
                         const highlight = measurement.station === "MISSOULA INTL AP";
                         return <line 
                         key={index} 
-                        x1={size - (size / 4) - 30} 
+                        x1={size - (size / 4) - barcodeLength} 
                         y1={yScaleWind(measurement.AWND)} 
                         x2={size - (size / 4)} 
                         y2={yScaleWind(measurement.AWND)}
@@ -169,78 +176,82 @@ const App = () => {
                 <svg width={size} height={size} style={{ border: "1px solid black" }}>
                     {/* left 0 */}
                     <text 
-                    x={50} 
+                    x={barcodeLength} 
                     textAnchor="end"
                     y={size - margin + axisTextAlignmentFactor} 
-                    style={{ fontSize: 10, fontFamily: "Gill Sans, sans serif" }}>
+                    style={{ fontSize: 15, fontFamily: "Gill Sans, sans serif" }}>
                         0
                     </text>
-                    {/* left 11 */}
+                    {/* left 37 */}
                     <text 
-                    x={50} 
+                    x={barcodeLength} 
                     textAnchor="end"
                     y={margin + axisTextAlignmentFactor / 2} 
-                    style={{ fontSize: 10, fontFamily: "Gill Sans, sans serif" }}>
-                        11
+                    style={{ fontSize: 15, fontFamily: "Gill Sans, sans serif" }}>
+                        37
                     </text>
                     {/* right 0 */}
                     <text 
-                    x={size - 50} 
+                    x={size - barcodeLength + axisTextAlignmentFactor} 
                     textAnchor="end"
                     y={size - margin + axisTextAlignmentFactor} 
-                    style={{ fontSize: 10, fontFamily: "Gill Sans, sans serif" }}>
+                    style={{ fontSize: 15, fontFamily: "Gill Sans, sans serif" }}>
                         0
                     </text>
-                    {/* right 11 */}
+                    {/* right 37 */}
                     <text 
-                    x={size - 50 + axisTextAlignmentFactor * 4} 
+                    x={size - barcodeLength + axisTextAlignmentFactor * 3} 
                     textAnchor="end"
                     y={margin + axisTextAlignmentFactor / 2} 
-                    style={{ fontSize: 10, fontFamily: "Gill Sans, sans serif" }}>
-                        11
+                    style={{ fontSize: 15, fontFamily: "Gill Sans, sans serif" }}>
+                        37
                     </text>
-                    {/* left 100 tick */}
+                    {/* left 37 tick */}
                     <line 
-                        x1={size / 4 - 5} 
+                        x1={size / 4 - tickLength} 
                         y1={margin} 
-                        x2={size / 4 - 10} 
+                        x2={size / 4 - tickLength * 2} 
                         y2={margin}
-                        stroke={"black"} />
+                        stroke={"black"}
+                        stroke-width= {"3"} />
                     {/* left 0 tick */}
                     <line
-                        x1={size / 4 - 5}
+                        x1={size / 4 - tickLength}
                         y1={size - margin}
-                        x2={size / 4 - 10}
+                        x2={size / 4 - tickLength * 2}
                         y2={size - margin}
-                        stroke={"black"}/>
-                    {/* right 100 tick */}
+                        stroke={"black"} 
+                        stroke-width= {"3"} />
+                    {/* right 37 tick */}
                     <line 
-                        x1={size - (size / 4) + 10} 
+                        x1={size - (size / 4) + tickLength * 2} 
                         y1={margin} 
-                        x2={size - (size / 4) + 5} 
+                        x2={size - (size / 4) + tickLength} 
                         y2={margin}
-                        stroke={"black"} />
+                        stroke={"black"} 
+                        stroke-width= {"3"} />
                     {/* right 0 tick */}
                     <line
-                        x1={size - (size / 4) + 10}
+                        x1={size - (size / 4) + tickLength * 2}
                         y1={size - margin}
-                        x2={size - (size / 4) + 5}
+                        x2={size - (size / 4) + tickLength}
                         y2={size - margin}
-                        stroke={"black"}/>
+                        stroke={"black"}
+                        stroke-width= {"3"} />
                     {/* left label */}
                     <text 
-                    x={size / 4 + 30} 
+                    x={size / 3 + margin / 2} 
                     textAnchor="end"
                     y={size - margin / 2.5} 
-                    style={{ fontSize: 8, fontFamily: "Gill Sans, sans serif" }}>
+                    style={{ fontSize: 18, fontFamily: "Gill Sans, sans serif" }}>
                         Kallispell
                     </text>
                     {/* right label */}
                     <text 
-                    x={size - (size / 4)} 
+                    x={size - (size / 4) - margin / 2} 
                     textAnchor="end"
                     y={size - margin / 2.5} 
-                    style={{ fontSize: 8, fontFamily: "Gill Sans, sans serif" }}>
+                    style={{ fontSize: 18, fontFamily: "Gill Sans, sans serif" }}>
                         Missoula
                     </text>
                     {data.map((measurement, index) => {
@@ -249,7 +260,7 @@ const App = () => {
                         key={index} 
                         x1={size / 4} 
                         y1={yScaleSnow(measurement.SNOW)} 
-                        x2={size / 4 + 30} 
+                        x2={size / 4 + barcodeLength} 
                         y2={yScaleSnow(measurement.SNOW)}
                         stroke={highlight ? "darkorange" : "steelblue"} 
                         strokeOpacity ={highlight ? 1 : 0.1} />
@@ -258,7 +269,7 @@ const App = () => {
                         const highlight = measurement.station === "MISSOULA INTL AP";
                         return <line 
                         key={index} 
-                        x1={size - (size / 4) - 30} 
+                        x1={size - (size / 4) - barcodeLength} 
                         y1={yScaleSnow(measurement.SNOW)} 
                         x2={size - (size / 4)} 
                         y2={yScaleSnow(measurement.SNOW)}
@@ -281,20 +292,22 @@ const App = () => {
                         y1={margin * 3} 
                         x2={margin * 2} 
                         y2={size - margin * 2}
-                        stroke={"black"} />
+                        stroke={"black"}
+                        stroke-width= {"3"} />
                     {/* x axis */}
                     <line 
                         x1={margin * 2} 
                         y1={size - margin * 2} 
                         x2={size - margin * 2} 
                         y2={size - margin * 2}
-                        stroke={"black"} />
+                        stroke={"black"}
+                        stroke-width= {"3"} />
                     {/* -40 */}
                     <text 
                     x={margin * 2 - axisTextAlignmentFactor} 
                     textAnchor="end"
                     y={size - margin * 2 + axisTextAlignmentFactor * 2} 
-                    style={{ fontSize: 10, fontFamily: "Gill Sans, sans serif" }}>
+                    style={{ fontSize: 15, fontFamily: "Gill Sans, sans serif" }}>
                         -40
                     </text>
                     {/* y max */}
@@ -302,7 +315,7 @@ const App = () => {
                     x={margin * 2 - axisTextAlignmentFactor * 2} 
                     textAnchor="end"
                     y={margin * 3 + axisTextAlignmentFactor * 2} 
-                    style={{ fontSize: 10, fontFamily: "Gill Sans, sans serif" }}>
+                    style={{ fontSize: 15, fontFamily: "Gill Sans, sans serif" }}>
                         110
                     </text>
                     {/* x max */}
@@ -310,7 +323,7 @@ const App = () => {
                     x={size - margin * 2} 
                     textAnchor="end"
                     y={size - margin * 2 + axisTextAlignmentFactor * 4} 
-                    style={{ fontSize: 10, fontFamily: "Gill Sans, sans serif" }}>
+                    style={{ fontSize: 15, fontFamily: "Gill Sans, sans serif" }}>
                         100
                     </text>
                     {/* x axis label */}
@@ -318,7 +331,7 @@ const App = () => {
                     x={size / 2} 
                     textAnchor="end"
                     y={size - margin * 2 + axisTextAlignmentFactor * 4} 
-                    style={{ fontSize: 8, fontFamily: "Gill Sans, sans serif" }}>
+                    style={{ fontSize: 12, fontFamily: "Gill Sans, sans serif" }}>
                         Min Temp
                     </text>
                     {/* y axis label */}
@@ -326,7 +339,7 @@ const App = () => {
                     x={margin * 2 - axisTextAlignmentFactor} 
                     textAnchor="end"
                     y={size / 2} 
-                    style={{ fontSize: 8, fontFamily: "Gill Sans, sans serif" }}>
+                    style={{ fontSize: 12, fontFamily: "Gill Sans, sans serif" }}>
                         Max Temp
                     </text>
                     {data.map((measurement, index) => {
@@ -336,11 +349,12 @@ const App = () => {
                         return (
                             <circle 
                                 key={index} 
-                                cx={125 + +measurement.TMIN} 
-                                cy={size - margin - 75 - +measurement.TMAX} 
+                                cx={250 + +measurement.TMIN} 
+                                cy={size - margin - 150 - +measurement.TMAX} 
                                 r="1" 
-                                fill="rgba(27, 51, 71, .05)" 
-                                stroke="none" /> 
+                                fill="rgba(176, 196, 222, .15)" 
+                                stroke="lightsteelblue"
+                                stroke-opacity="0.2" /> 
                         );
                     })}
                     {data.map((measurement, index) => {
@@ -350,11 +364,12 @@ const App = () => {
                         return (
                             <circle 
                                 key={index} 
-                                cx={125 + +measurement.TMIN} 
-                                cy={size - margin - 75 - +measurement.TMAX} 
-                                r="1" 
-                                fill="rgba(100, 0, 0, 1)" 
-                                stroke="none" /> 
+                                cx={250 + +measurement.TMIN} 
+                                cy={size - margin - 150 - +measurement.TMAX} 
+                                r="1.5" 
+                                fill="rgba(255, 165, 0, .85)" 
+                                stroke="darkorange"
+                                stroke-opacity="0.2"  /> 
                         );
                     })}
                 </svg>
@@ -372,20 +387,22 @@ const App = () => {
                         y1={margin * 3} 
                         x2={margin * 2} 
                         y2={size - margin * 2}
-                        stroke={"black"} />
+                        stroke={"black"}
+                        stroke-width= {"3"} />
                     {/* x axis */}
                     <line 
                         x1={margin * 2} 
                         y1={size - margin * 2} 
                         x2={size - margin * 2} 
                         y2={size - margin * 2}
-                        stroke={"black"} />
+                        stroke={"black"}
+                        stroke-width= {"3"} />
                     {/* -40 */}
                     <text 
                     x={margin * 2 - axisTextAlignmentFactor} 
                     textAnchor="end"
                     y={size - margin * 2 + axisTextAlignmentFactor * 2} 
-                    style={{ fontSize: 10, fontFamily: "Gill Sans, sans serif" }}>
+                    style={{ fontSize: 15, fontFamily: "Gill Sans, sans serif" }}>
                         -40
                     </text>
                     {/* y max */}
@@ -393,7 +410,7 @@ const App = () => {
                     x={margin * 2 - axisTextAlignmentFactor * 2} 
                     textAnchor="end"
                     y={margin * 3 + axisTextAlignmentFactor * 2} 
-                    style={{ fontSize: 10, fontFamily: "Gill Sans, sans serif" }}>
+                    style={{ fontSize: 15, fontFamily: "Gill Sans, sans serif" }}>
                         110
                     </text>
                     {/* x max */}
@@ -401,7 +418,7 @@ const App = () => {
                     x={size - margin * 2} 
                     textAnchor="end"
                     y={size - margin * 2 + axisTextAlignmentFactor * 4} 
-                    style={{ fontSize: 10, fontFamily: "Gill Sans, sans serif" }}>
+                    style={{ fontSize: 15, fontFamily: "Gill Sans, sans serif" }}>
                         100
                     </text>
                     {/* x axis label */}
@@ -409,7 +426,7 @@ const App = () => {
                     x={size / 2} 
                     textAnchor="end"
                     y={size - margin * 2 + axisTextAlignmentFactor * 4} 
-                    style={{ fontSize: 8, fontFamily: "Gill Sans, sans serif" }}>
+                    style={{ fontSize: 12, fontFamily: "Gill Sans, sans serif" }}>
                         Min Temp
                     </text>
                     {/* y axis label */}
@@ -417,7 +434,7 @@ const App = () => {
                     x={margin * 2 - axisTextAlignmentFactor} 
                     textAnchor="end"
                     y={size / 2} 
-                    style={{ fontSize: 8, fontFamily: "Gill Sans, sans serif" }}>
+                    style={{ fontSize: 12, fontFamily: "Gill Sans, sans serif" }}>
                         Max Temp
                     </text>
                     {data.map((measurement, index) => {
@@ -427,11 +444,12 @@ const App = () => {
                         return (
                             <circle 
                                 key={index} 
-                                cx={125 + +measurement.TMIN} 
-                                cy={size - margin - 75 - +measurement.TMAX} 
+                                cx={250 + +measurement.TMIN} 
+                                cy={size - margin - 150 - +measurement.TMAX} 
                                 r="1" 
-                                fill="rgba(27, 51, 71, .05)" 
-                                stroke="none" /> 
+                                fill="rgba(176, 196, 222, .15)" 
+                                stroke="lightsteelblue"
+                                stroke-opacity="0.2" /> 
                         );
                     })}
                     {data.map((measurement, index) => {
@@ -441,17 +459,26 @@ const App = () => {
                         return (
                             <circle 
                                 key={index} 
-                                cx={125 + +measurement.TMIN} 
-                                cy={size - margin - 75 - +measurement.TMAX} 
-                                r="1" 
-                                fill="rgba(100, 0, 0, 1)" 
-                                stroke="none" />
+                                cx={250 + +measurement.TMIN} 
+                                cy={size - margin - 150 - +measurement.TMAX} 
+                                r="1.5" 
+                                fill="rgba(255, 165, 0, .85)" 
+                                stroke="darkorange"
+                                stroke-opacity="0.2" />
                         );
                     })}
                 </svg>
                 <p>This time I focused on the Kalispell Glacier Airport.</p>
                 <p><strong>Insight #9</strong>: I see that this weather station has a few outliers as well but less than Many Glacier.</p>
                 <p><strong>Insight #10</strong>: There is a more concentrated cluster of higher temperatures than at Many Glacier.</p>
+            </div>
+            <div>
+                <h2>Peer Feedback</h2>
+                <li>Instead of using color in the Barcode plots, shift the highlighted bars over to see them better</li>
+                <li>Make graphs bigger</li>
+                <li>Change contrast on scatterplot</li>
+                <h2>Implemented Feedback</h2>
+                <p>I decided to make all of my graphs bigger.  I agreed with my feedback in that it would make the graphs easier to see and read.  I had to fix my scaling on everything which was tedious becuase a lot of my labels and tick marks were hard coded in to fit my old scaling.  I also noticed I should make some lines thicker to make them easier to see since everything was bigger now.  I also changed my contrast of colors on my scatterplot so the highlighted ones could stand out better.</p>
             </div>
         </div>
     );

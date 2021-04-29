@@ -26282,7 +26282,6 @@ try {
     _s();
     const [data, loading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/isabellaabulhosn/cloned-example/main/montana.csv");
     const dataSmallSample = data.slice(0, 5000);
-    // const randomSmallSample = _.sample(data, 5000)
     const TMAXextent = _d3Array.extent(dataSmallSample, d => {
       return +d.TMAX;
     });
@@ -26292,9 +26291,12 @@ try {
     const SNOWextent = _d3Array.extent(data, d => {
       return +d.SNOW;
     });
-    const size = 300;
-    const margin = 25;
-    const axisTextAlignmentFactor = 3;
+    const size = 500;
+    const margin = 50;
+    const axisTextAlignmentFactor = 6;
+    const barcodeLength = 100;
+    const tickLength = 8;
+    const numSize = 15;
     const maxValueOfTMAX = _d3Array.max([1, 2, 3]);
     const yScale = _d3Scale.scaleLinear().domain(TMAXextent).// unit: km
     range([size - margin, size - 50]);
@@ -26315,28 +26317,28 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 55,
+          lineNumber: 57,
           columnNumber: 9
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 56,
+          lineNumber: 58,
           columnNumber: 13
         }
       }, "Exploratory Data Analysis INFO 474 SP 2021"), /*#__PURE__*/_reactDefault.default.createElement("h2", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 57,
+          lineNumber: 59,
           columnNumber: 13
         }
       }, "Montana Weather Data"), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 58,
+          lineNumber: 60,
           columnNumber: 13
         }
       }, loading && "Loading data!"), /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -26344,21 +26346,21 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 59,
+          lineNumber: 61,
           columnNumber: 13
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("h3", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 60,
+          lineNumber: 62,
           columnNumber: 17
         }
       }, "Barcode Plot: Average Daily Wind Speed (mph)"), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 61,
+          lineNumber: 63,
           columnNumber: 17
         }
       }, "Kalispell Glacier Airport vs. Missoula Intl Airport"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
@@ -26370,139 +26372,143 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 62,
+          lineNumber: 64,
           columnNumber: 17
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("text", {
-        x: 50,
+        x: barcodeLength,
         textAnchor: "end",
         y: size - margin + axisTextAlignmentFactor,
         style: {
-          fontSize: 10,
+          fontSize: 15,
           fontFamily: "Gill Sans, sans serif"
         },
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 64,
+          lineNumber: 66,
           columnNumber: 21
         }
       }, "0"), /*#__PURE__*/_reactDefault.default.createElement("text", {
-        x: 50,
+        x: barcodeLength,
         textAnchor: "end",
         y: margin + axisTextAlignmentFactor / 2,
         style: {
-          fontSize: 10,
+          fontSize: 15,
           fontFamily: "Gill Sans, sans serif"
         },
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 72,
+          lineNumber: 74,
           columnNumber: 21
         }
       }, "37"), /*#__PURE__*/_reactDefault.default.createElement("text", {
-        x: size - 50,
+        x: size - barcodeLength + axisTextAlignmentFactor,
         textAnchor: "end",
         y: size - margin + axisTextAlignmentFactor,
         style: {
-          fontSize: 10,
+          fontSize: 15,
           fontFamily: "Gill Sans, sans serif"
         },
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 80,
+          lineNumber: 82,
           columnNumber: 21
         }
       }, "0"), /*#__PURE__*/_reactDefault.default.createElement("text", {
-        x: size - 50 + axisTextAlignmentFactor * 4,
+        x: size - barcodeLength + axisTextAlignmentFactor * 3,
         textAnchor: "end",
         y: margin + axisTextAlignmentFactor / 2,
         style: {
-          fontSize: 10,
+          fontSize: 15,
           fontFamily: "Gill Sans, sans serif"
         },
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 88,
+          lineNumber: 90,
           columnNumber: 21
         }
       }, "37"), /*#__PURE__*/_reactDefault.default.createElement("line", {
-        x1: size / 4 - 5,
+        x1: size / 4 - tickLength,
         y1: margin,
-        x2: size / 4 - 10,
+        x2: size / 4 - tickLength * 2,
         y2: margin,
         stroke: "black",
+        "stroke-width": "3",
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 96,
+          lineNumber: 98,
           columnNumber: 21
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("line", {
-        x1: size / 4 - 5,
+        x1: size / 4 - tickLength,
         y1: size - margin,
-        x2: size / 4 - 10,
+        x2: size / 4 - tickLength * 2,
         y2: size - margin,
         stroke: "black",
+        "stroke-width": "3",
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 103,
+          lineNumber: 106,
           columnNumber: 21
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("line", {
-        x1: size - size / 4 + 10,
+        x1: size - size / 4 + tickLength * 2,
         y1: margin,
-        x2: size - size / 4 + 5,
+        x2: size - size / 4 + tickLength,
         y2: margin,
         stroke: "black",
+        "stroke-width": "3",
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 110,
+          lineNumber: 114,
           columnNumber: 21
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("line", {
-        x1: size - size / 4 + 10,
+        x1: size - size / 4 + tickLength * 2,
         y1: size - margin,
-        x2: size - size / 4 + 5,
+        x2: size - size / 4 + tickLength,
         y2: size - margin,
         stroke: "black",
+        "stroke-width": "3",
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 117,
+          lineNumber: 122,
           columnNumber: 21
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("text", {
-        x: size / 4 + 30,
+        x: size / 3 + margin / 2,
         textAnchor: "end",
         y: size - margin / 2.5,
         style: {
-          fontSize: 8,
+          fontSize: 18,
           fontFamily: "Gill Sans, sans serif"
         },
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 124,
+          lineNumber: 130,
           columnNumber: 21
         }
       }, "Kallispell"), /*#__PURE__*/_reactDefault.default.createElement("text", {
-        x: size - size / 4,
+        x: size - size / 4 - margin / 2,
         textAnchor: "end",
         y: size - margin / 2.5,
         style: {
-          fontSize: 8,
+          fontSize: 18,
           fontFamily: "Gill Sans, sans serif"
         },
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 132,
+          lineNumber: 138,
           columnNumber: 21
         }
       }, "Missoula"), data.map((measurement, index) => {
@@ -26512,14 +26518,14 @@ try {
             key: index,
             x1: size / 4,
             y1: yScaleWind(measurement.AWND),
-            x2: size / 4 + 30,
+            x2: size / 4 + barcodeLength,
             y2: yScaleWind(measurement.AWND),
             stroke: highlight ? "darkorange" : "steelblue",
             strokeOpacity: highlight ? 1 : 0.1,
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 141,
+              lineNumber: 147,
               columnNumber: 32
             }
           })
@@ -26529,7 +26535,7 @@ try {
         return (
           /*#__PURE__*/_reactDefault.default.createElement("line", {
             key: index,
-            x1: size - size / 4 - 30,
+            x1: size - size / 4 - barcodeLength,
             y1: yScaleWind(measurement.AWND),
             x2: size - size / 4,
             y2: yScaleWind(measurement.AWND),
@@ -26538,7 +26544,7 @@ try {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 152,
+              lineNumber: 158,
               columnNumber: 32
             }
           })
@@ -26547,49 +26553,49 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 162,
+          lineNumber: 168,
           columnNumber: 17
         }
       }, "I wanted to use this data to compare the Kalispell Glacier Airport and the Missoula International Airport.  These are the 2 airports I would fly into when I go to Montana, and I was wondering if I could gain some insight into which have better or worse weather which could be tied into flight times or delays."), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 163,
+          lineNumber: 169,
           columnNumber: 17
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 163,
+          lineNumber: 169,
           columnNumber: 20
         }
       }, "Insight #1"), ": Compared to all of the weather stations in Montana, the airport at Kalispell has average daily wind speeds mostly on the lower end.  The highest wind speeds the Kalispell airports get are around 15mph."), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 164,
+          lineNumber: 170,
           columnNumber: 17
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 164,
+          lineNumber: 170,
           columnNumber: 20
         }
       }, "Insight #2"), ": Compared to all of the weather stations in Montant, the airport in Missoula has fairly low average daily wind speeds, but one day had a pretty high wind speed of about 20ish mph."), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 165,
+          lineNumber: 171,
           columnNumber: 17
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 165,
+          lineNumber: 171,
           columnNumber: 20
         }
       }, "Insight #3"), ": In comparison to each other, it seems the Missoula airport has lower wind speeds on average, aside from a few outliers.")), /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -26597,21 +26603,21 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 167,
+          lineNumber: 173,
           columnNumber: 13
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("h3", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 168,
+          lineNumber: 174,
           columnNumber: 17
         }
       }, "Barcode Plot: Average Snowfall (in)"), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 169,
+          lineNumber: 175,
           columnNumber: 17
         }
       }, "Kalispell Glacier Airport vs. Missoula Intl Airport"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
@@ -26623,95 +26629,85 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 170,
+          lineNumber: 176,
           columnNumber: 17
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("text", {
-        x: 50,
+        x: barcodeLength,
         textAnchor: "end",
         y: size - margin + axisTextAlignmentFactor,
         style: {
-          fontSize: 10,
+          fontSize: 15,
           fontFamily: "Gill Sans, sans serif"
         },
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 172,
+          lineNumber: 178,
           columnNumber: 21
         }
       }, "0"), /*#__PURE__*/_reactDefault.default.createElement("text", {
-        x: 50,
+        x: barcodeLength,
         textAnchor: "end",
         y: margin + axisTextAlignmentFactor / 2,
         style: {
-          fontSize: 10,
+          fontSize: 15,
           fontFamily: "Gill Sans, sans serif"
         },
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 180,
+          lineNumber: 186,
           columnNumber: 21
         }
-      }, "11"), /*#__PURE__*/_reactDefault.default.createElement("text", {
-        x: size - 50,
+      }, "37"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size - barcodeLength + axisTextAlignmentFactor,
         textAnchor: "end",
         y: size - margin + axisTextAlignmentFactor,
         style: {
-          fontSize: 10,
+          fontSize: 15,
           fontFamily: "Gill Sans, sans serif"
         },
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 188,
+          lineNumber: 194,
           columnNumber: 21
         }
       }, "0"), /*#__PURE__*/_reactDefault.default.createElement("text", {
-        x: size - 50 + axisTextAlignmentFactor * 4,
+        x: size - barcodeLength + axisTextAlignmentFactor * 3,
         textAnchor: "end",
         y: margin + axisTextAlignmentFactor / 2,
         style: {
-          fontSize: 10,
+          fontSize: 15,
           fontFamily: "Gill Sans, sans serif"
         },
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 196,
+          lineNumber: 202,
           columnNumber: 21
         }
-      }, "11"), /*#__PURE__*/_reactDefault.default.createElement("line", {
-        x1: size / 4 - 5,
+      }, "37"), /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: size / 4 - tickLength,
         y1: margin,
-        x2: size / 4 - 10,
+        x2: size / 4 - tickLength * 2,
         y2: margin,
         stroke: "black",
+        "stroke-width": "3",
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 204,
+          lineNumber: 210,
           columnNumber: 21
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("line", {
-        x1: size / 4 - 5,
+        x1: size / 4 - tickLength,
         y1: size - margin,
-        x2: size / 4 - 10,
+        x2: size / 4 - tickLength * 2,
         y2: size - margin,
         stroke: "black",
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 211,
-          columnNumber: 21
-        }
-      }), /*#__PURE__*/_reactDefault.default.createElement("line", {
-        x1: size - size / 4 + 10,
-        y1: margin,
-        x2: size - size / 4 + 5,
-        y2: margin,
-        stroke: "black",
+        "stroke-width": "3",
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
@@ -26719,43 +26715,57 @@ try {
           columnNumber: 21
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("line", {
-        x1: size - size / 4 + 10,
-        y1: size - margin,
-        x2: size - size / 4 + 5,
-        y2: size - margin,
+        x1: size - size / 4 + tickLength * 2,
+        y1: margin,
+        x2: size - size / 4 + tickLength,
+        y2: margin,
         stroke: "black",
+        "stroke-width": "3",
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 225,
+          lineNumber: 226,
+          columnNumber: 21
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: size - size / 4 + tickLength * 2,
+        y1: size - margin,
+        x2: size - size / 4 + tickLength,
+        y2: size - margin,
+        stroke: "black",
+        "stroke-width": "3",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 234,
           columnNumber: 21
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("text", {
-        x: size / 4 + 30,
+        x: size / 3 + margin / 2,
         textAnchor: "end",
         y: size - margin / 2.5,
         style: {
-          fontSize: 8,
+          fontSize: 18,
           fontFamily: "Gill Sans, sans serif"
         },
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 232,
+          lineNumber: 242,
           columnNumber: 21
         }
       }, "Kallispell"), /*#__PURE__*/_reactDefault.default.createElement("text", {
-        x: size - size / 4,
+        x: size - size / 4 - margin / 2,
         textAnchor: "end",
         y: size - margin / 2.5,
         style: {
-          fontSize: 8,
+          fontSize: 18,
           fontFamily: "Gill Sans, sans serif"
         },
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 240,
+          lineNumber: 250,
           columnNumber: 21
         }
       }, "Missoula"), data.map((measurement, index) => {
@@ -26765,14 +26775,14 @@ try {
             key: index,
             x1: size / 4,
             y1: yScaleSnow(measurement.SNOW),
-            x2: size / 4 + 30,
+            x2: size / 4 + barcodeLength,
             y2: yScaleSnow(measurement.SNOW),
             stroke: highlight ? "darkorange" : "steelblue",
             strokeOpacity: highlight ? 1 : 0.1,
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 249,
+              lineNumber: 259,
               columnNumber: 32
             }
           })
@@ -26782,7 +26792,7 @@ try {
         return (
           /*#__PURE__*/_reactDefault.default.createElement("line", {
             key: index,
-            x1: size - size / 4 - 30,
+            x1: size - size / 4 - barcodeLength,
             y1: yScaleSnow(measurement.SNOW),
             x2: size - size / 4,
             y2: yScaleSnow(measurement.SNOW),
@@ -26791,7 +26801,7 @@ try {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 260,
+              lineNumber: 270,
               columnNumber: 32
             }
           })
@@ -26800,49 +26810,49 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 270,
+          lineNumber: 280,
           columnNumber: 17
         }
       }, "I next wanted to look at average snowfall which has impacted my flights' landing times before."), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 271,
+          lineNumber: 281,
           columnNumber: 17
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 271,
+          lineNumber: 281,
           columnNumber: 20
         }
       }, "Insight #4"), ": Compared to all of the weather stations in Montana, the airport at Kalispell got the highest average snowfall in a day."), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 272,
+          lineNumber: 282,
           columnNumber: 17
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 272,
+          lineNumber: 282,
           columnNumber: 20
         }
       }, "Insight #5"), ": Compared to all of the weather stations in Montant, the airport in Missoula seems like it gets a consistent amount of snow.  Only a few other weather stations are getting more average snowfall."), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 273,
+          lineNumber: 283,
           columnNumber: 17
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 273,
+          lineNumber: 283,
           columnNumber: 20
         }
       }, "Insight #6"), ": In comparison to each other, based on this data it seems like there isn't a huge difference in snowfall between the two airports, aside from the one day Kalispell got the highest snowfall.")), /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -26850,21 +26860,21 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 275,
+          lineNumber: 285,
           columnNumber: 13
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("h3", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 276,
+          lineNumber: 286,
           columnNumber: 17
         }
       }, "Scatterplot: Minimum vs. Maximum Temperature (F)"), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 277,
+          lineNumber: 287,
           columnNumber: 17
         }
       }, "Focusing on Many Glacier"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
@@ -26876,7 +26886,7 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 278,
+          lineNumber: 288,
           columnNumber: 17
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("line", {
@@ -26885,10 +26895,11 @@ try {
         x2: margin * 2,
         y2: size - margin * 2,
         stroke: "black",
+        "stroke-width": "3",
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 280,
+          lineNumber: 290,
           columnNumber: 21
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("line", {
@@ -26897,10 +26908,11 @@ try {
         x2: size - margin * 2,
         y2: size - margin * 2,
         stroke: "black",
+        "stroke-width": "3",
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 287,
+          lineNumber: 298,
           columnNumber: 21
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("text", {
@@ -26908,13 +26920,13 @@ try {
         textAnchor: "end",
         y: size - margin * 2 + axisTextAlignmentFactor * 2,
         style: {
-          fontSize: 10,
+          fontSize: 15,
           fontFamily: "Gill Sans, sans serif"
         },
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 294,
+          lineNumber: 306,
           columnNumber: 21
         }
       }, "-40"), /*#__PURE__*/_reactDefault.default.createElement("text", {
@@ -26922,13 +26934,13 @@ try {
         textAnchor: "end",
         y: margin * 3 + axisTextAlignmentFactor * 2,
         style: {
-          fontSize: 10,
+          fontSize: 15,
           fontFamily: "Gill Sans, sans serif"
         },
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 302,
+          lineNumber: 314,
           columnNumber: 21
         }
       }, "110"), /*#__PURE__*/_reactDefault.default.createElement("text", {
@@ -26936,13 +26948,13 @@ try {
         textAnchor: "end",
         y: size - margin * 2 + axisTextAlignmentFactor * 4,
         style: {
-          fontSize: 10,
+          fontSize: 15,
           fontFamily: "Gill Sans, sans serif"
         },
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 310,
+          lineNumber: 322,
           columnNumber: 21
         }
       }, "100"), /*#__PURE__*/_reactDefault.default.createElement("text", {
@@ -26950,13 +26962,13 @@ try {
         textAnchor: "end",
         y: size - margin * 2 + axisTextAlignmentFactor * 4,
         style: {
-          fontSize: 8,
+          fontSize: 12,
           fontFamily: "Gill Sans, sans serif"
         },
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 318,
+          lineNumber: 330,
           columnNumber: 21
         }
       }, "Min Temp"), /*#__PURE__*/_reactDefault.default.createElement("text", {
@@ -26964,13 +26976,13 @@ try {
         textAnchor: "end",
         y: size / 2,
         style: {
-          fontSize: 8,
+          fontSize: 12,
           fontFamily: "Gill Sans, sans serif"
         },
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 326,
+          lineNumber: 338,
           columnNumber: 21
         }
       }, "Max Temp"), data.map((measurement, index) => {
@@ -26980,15 +26992,16 @@ try {
         return (
           /*#__PURE__*/_reactDefault.default.createElement("circle", {
             key: index,
-            cx: 125 + +measurement.TMIN,
-            cy: size - margin - 75 - +measurement.TMAX,
+            cx: 250 + +measurement.TMIN,
+            cy: size - margin - 150 - +measurement.TMAX,
             r: "1",
-            fill: "rgba(27, 51, 71, .05)",
-            stroke: "none",
+            fill: "rgba(176, 196, 222, .15)",
+            stroke: "lightsteelblue",
+            "stroke-opacity": "0.2",
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 338,
+              lineNumber: 350,
               columnNumber: 29
             }
           })
@@ -27000,15 +27013,16 @@ try {
         return (
           /*#__PURE__*/_reactDefault.default.createElement("circle", {
             key: index,
-            cx: 125 + +measurement.TMIN,
-            cy: size - margin - 75 - +measurement.TMAX,
-            r: "1",
-            fill: "rgba(100, 0, 0, 1)",
-            stroke: "none",
+            cx: 250 + +measurement.TMIN,
+            cy: size - margin - 150 - +measurement.TMAX,
+            r: "1.5",
+            fill: "rgba(255, 165, 0, .85)",
+            stroke: "darkorange",
+            "stroke-opacity": "0.2",
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 352,
+              lineNumber: 365,
               columnNumber: 29
             }
           })
@@ -27017,35 +27031,35 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 362,
+          lineNumber: 376,
           columnNumber: 17
         }
       }, "I also wanted to look into the temperatures of two different places in Glacier National Park.  It is so big and I know the temperatures can drastically vary."), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 363,
+          lineNumber: 377,
           columnNumber: 17
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 363,
+          lineNumber: 377,
           columnNumber: 20
         }
       }, "Insight #7"), ": This graph was slightly hard to get the axes because the minimum temperatures weren't 0.  The ranges of TMAX was about -10 to 110.  The ranges of TMIN were about -35 to 80."), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 364,
+          lineNumber: 378,
           columnNumber: 17
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 364,
+          lineNumber: 378,
           columnNumber: 20
         }
       }, "Insight #8"), ": You can see Many Glacier has some of the lowest temperatures compared to the rest of Montana.  There are a few extreme outliers.")), /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -27053,21 +27067,21 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 366,
+          lineNumber: 380,
           columnNumber: 13
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("h3", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 367,
+          lineNumber: 381,
           columnNumber: 17
         }
       }, "Scatterplot: Minimum vs. Maximum Temperature (F)"), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 368,
+          lineNumber: 382,
           columnNumber: 17
         }
       }, "Focusing on Kalispell Glacier Airport"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
@@ -27079,7 +27093,7 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 369,
+          lineNumber: 383,
           columnNumber: 17
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("line", {
@@ -27088,10 +27102,11 @@ try {
         x2: margin * 2,
         y2: size - margin * 2,
         stroke: "black",
+        "stroke-width": "3",
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 371,
+          lineNumber: 385,
           columnNumber: 21
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("line", {
@@ -27100,10 +27115,11 @@ try {
         x2: size - margin * 2,
         y2: size - margin * 2,
         stroke: "black",
+        "stroke-width": "3",
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 378,
+          lineNumber: 393,
           columnNumber: 21
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("text", {
@@ -27111,35 +27127,7 @@ try {
         textAnchor: "end",
         y: size - margin * 2 + axisTextAlignmentFactor * 2,
         style: {
-          fontSize: 10,
-          fontFamily: "Gill Sans, sans serif"
-        },
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 385,
-          columnNumber: 21
-        }
-      }, "-40"), /*#__PURE__*/_reactDefault.default.createElement("text", {
-        x: margin * 2 - axisTextAlignmentFactor * 2,
-        textAnchor: "end",
-        y: margin * 3 + axisTextAlignmentFactor * 2,
-        style: {
-          fontSize: 10,
-          fontFamily: "Gill Sans, sans serif"
-        },
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 393,
-          columnNumber: 21
-        }
-      }, "110"), /*#__PURE__*/_reactDefault.default.createElement("text", {
-        x: size - margin * 2,
-        textAnchor: "end",
-        y: size - margin * 2 + axisTextAlignmentFactor * 4,
-        style: {
-          fontSize: 10,
+          fontSize: 15,
           fontFamily: "Gill Sans, sans serif"
         },
         __self: undefined,
@@ -27148,12 +27136,12 @@ try {
           lineNumber: 401,
           columnNumber: 21
         }
-      }, "100"), /*#__PURE__*/_reactDefault.default.createElement("text", {
-        x: size / 2,
+      }, "-40"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: margin * 2 - axisTextAlignmentFactor * 2,
         textAnchor: "end",
-        y: size - margin * 2 + axisTextAlignmentFactor * 4,
+        y: margin * 3 + axisTextAlignmentFactor * 2,
         style: {
-          fontSize: 8,
+          fontSize: 15,
           fontFamily: "Gill Sans, sans serif"
         },
         __self: undefined,
@@ -27162,18 +27150,46 @@ try {
           lineNumber: 409,
           columnNumber: 21
         }
-      }, "Min Temp"), /*#__PURE__*/_reactDefault.default.createElement("text", {
-        x: margin * 2 - axisTextAlignmentFactor,
+      }, "110"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size - margin * 2,
         textAnchor: "end",
-        y: size / 2,
+        y: size - margin * 2 + axisTextAlignmentFactor * 4,
         style: {
-          fontSize: 8,
+          fontSize: 15,
           fontFamily: "Gill Sans, sans serif"
         },
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 417,
+          columnNumber: 21
+        }
+      }, "100"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size / 2,
+        textAnchor: "end",
+        y: size - margin * 2 + axisTextAlignmentFactor * 4,
+        style: {
+          fontSize: 12,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 425,
+          columnNumber: 21
+        }
+      }, "Min Temp"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: margin * 2 - axisTextAlignmentFactor,
+        textAnchor: "end",
+        y: size / 2,
+        style: {
+          fontSize: 12,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 433,
           columnNumber: 21
         }
       }, "Max Temp"), data.map((measurement, index) => {
@@ -27183,15 +27199,16 @@ try {
         return (
           /*#__PURE__*/_reactDefault.default.createElement("circle", {
             key: index,
-            cx: 125 + +measurement.TMIN,
-            cy: size - margin - 75 - +measurement.TMAX,
+            cx: 250 + +measurement.TMIN,
+            cy: size - margin - 150 - +measurement.TMAX,
             r: "1",
-            fill: "rgba(27, 51, 71, .05)",
-            stroke: "none",
+            fill: "rgba(176, 196, 222, .15)",
+            stroke: "lightsteelblue",
+            "stroke-opacity": "0.2",
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 429,
+              lineNumber: 445,
               columnNumber: 29
             }
           })
@@ -27203,15 +27220,16 @@ try {
         return (
           /*#__PURE__*/_reactDefault.default.createElement("circle", {
             key: index,
-            cx: 125 + +measurement.TMIN,
-            cy: size - margin - 75 - +measurement.TMAX,
-            r: "1",
-            fill: "rgba(100, 0, 0, 1)",
-            stroke: "none",
+            cx: 250 + +measurement.TMIN,
+            cy: size - margin - 150 - +measurement.TMAX,
+            r: "1.5",
+            fill: "rgba(255, 165, 0, .85)",
+            stroke: "darkorange",
+            "stroke-opacity": "0.2",
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 443,
+              lineNumber: 460,
               columnNumber: 29
             }
           })
@@ -27220,38 +27238,87 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 453,
+          lineNumber: 471,
           columnNumber: 17
         }
       }, "This time I focused on the Kalispell Glacier Airport."), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 454,
+          lineNumber: 472,
           columnNumber: 17
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 454,
+          lineNumber: 472,
           columnNumber: 20
         }
       }, "Insight #9"), ": I see that this weather station has a few outliers as well but less than Many Glacier."), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 455,
+          lineNumber: 473,
           columnNumber: 17
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("strong", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 455,
+          lineNumber: 473,
           columnNumber: 20
         }
-      }, "Insight #10"), ": There is a more concentrated cluster of higher temperatures than at Many Glacier.")))
+      }, "Insight #10"), ": There is a more concentrated cluster of higher temperatures than at Many Glacier.")), /*#__PURE__*/_reactDefault.default.createElement("div", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 475,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h2", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 476,
+          columnNumber: 17
+        }
+      }, "Peer Feedback"), /*#__PURE__*/_reactDefault.default.createElement("li", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 477,
+          columnNumber: 17
+        }
+      }, "Instead of using color in the Barcode plots, shift the highlighted bars over to see them better"), /*#__PURE__*/_reactDefault.default.createElement("li", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 478,
+          columnNumber: 17
+        }
+      }, "Make graphs bigger"), /*#__PURE__*/_reactDefault.default.createElement("li", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 479,
+          columnNumber: 17
+        }
+      }, "Change contrast on scatterplot"), /*#__PURE__*/_reactDefault.default.createElement("h2", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 480,
+          columnNumber: 17
+        }
+      }, "Implemented Feedback"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 481,
+          columnNumber: 17
+        }
+      }, "I decided to make all of my graphs bigger.  I agreed with my feedback in that it would make the graphs easier to see and read.  I had to fix my scaling on everything which was tedious becuase a lot of my labels and tick marks were hard coded in to fit my old scaling.  I also noticed I should make some lines thicker to make them easier to see since everything was bigger now.  I also changed my contrast of colors on my scatterplot so the highlighted ones could stand out better.")))
     );
   };
   _s(App, "Jm65JCcgUFoenM4DufkEA80vRVI=", false, function () {

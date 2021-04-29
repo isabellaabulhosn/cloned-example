@@ -1,0 +1,329 @@
+var helpers = require("../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  var _react = require("react");
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _hooksUseFetch = require("./hooks/useFetch");
+  var _d3Scale = require("d3-scale");
+  var _d3Array = require("d3-array");
+  var _jsxFileName = "/Users/isabellaabulhosn/Desktop/cloned-example/src/App.js", _s = $RefreshSig$();
+  // import { geoNaturalEath1 } from "d3-geo-projection";
+  // import { scale } from "vega";
+  const App = () => {
+    _s();
+    const [data, loading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/isabellaabulhosn/cloned-example/main/montana.csv");
+    const dataSmallSample = data.slice(0, 5000);
+    // const randomSmallSample = _.sample(data, 5000)
+    const TMAXextent = _d3Array.extent(dataSmallSample, d => {
+      return +d.TMAX;
+    });
+    const size = 300;
+    const margin = 20;
+    const axisTextAlignmentFactor = 3;
+    const maxValueOfTMAX = _d3Array.max([1, 2, 3]);
+    const yScale = _d3Scale.scaleLinear().domain(TMAXextent).// unit: km
+    range([size - margin, size - 350]);
+    // unit: pixels
+    _bins = _d3Array.bin().thresholds(30);
+    tmaxBins = _bins(data.map(d => {
+      return +d.TMAX;
+    }));
+    const histogramLeftPadding = 20;
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement("div", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 39,
+          columnNumber: 9
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 40,
+          columnNumber: 13
+        }
+      }, "Exploratory Data Analysis INFO 474 SP 2021"), /*#__PURE__*/_reactDefault.default.createElement("h2", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 41,
+          columnNumber: 13
+        }
+      }, "Montana Weather Data"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 42,
+          columnNumber: 13
+        }
+      }, loading && "Loading data!"), /*#__PURE__*/_reactDefault.default.createElement("div", {
+        id: "plot1",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 43,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 44,
+          columnNumber: 17
+        }
+      }, "Barcode Plot: Average Daily Wind Speed (mph)"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 45,
+          columnNumber: 17
+        }
+      }, "Billings Logan Intl Airport vs. Missoula Intl Airport"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
+        width: size,
+        height: size,
+        style: {
+          border: "1px solid black"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 46,
+          columnNumber: 17
+        }
+      }, data.map((measurement, index) => {
+        const highlight = measurement.station === "BILLINGS LOGAN INTL AP";
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("line", {
+            key: index,
+            x1: size / 4.5,
+            y1: size - margin - measurement.AWND,
+            x2: size / 4.5 + 20,
+            y2: size - margin - measurement.AWND,
+            stroke: highlight ? "darkorange" : "steelblue",
+            strokeOpacity: highlight ? 1 : 0.1,
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 75,
+              columnNumber: 32
+            }
+          })
+        );
+      }), data.map((measurement, index) => {
+        const highlight = measurement.station === "MISSOULA INTL AP";
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("line", {
+            key: index,
+            x1: size / 1.5,
+            y1: size - margin - measurement.AWND,
+            x2: size / 1.5 + 20,
+            y2: size - margin - measurement.AWND,
+            stroke: highlight ? "darkorange" : "steelblue",
+            strokeOpacity: highlight ? 1 : 0.1,
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 86,
+              columnNumber: 32
+            }
+          })
+        );
+      }))), /*#__PURE__*/_reactDefault.default.createElement("div", {
+        id: "plot2",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 97,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 98,
+          columnNumber: 17
+        }
+      }, "Barcode Plot: Average Snowfall (in)"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 99,
+          columnNumber: 17
+        }
+      }, "Billings Logan Intl Airport vs. Missoula Intl Airport"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
+        width: size,
+        height: size,
+        style: {
+          border: "1px solid black"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 100,
+          columnNumber: 17
+        }
+      }, data.map((measurement, index) => {
+        const highlight = measurement.station === "BILLINGS LOGAN INTL AP";
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("line", {
+            key: index,
+            x1: size / 4.5,
+            y1: size - margin - measurement.SNOW,
+            x2: size / 4.5 + 20,
+            y2: size - margin - measurement.SNOW,
+            stroke: highlight ? "darkorange" : "steelblue",
+            strokeOpacity: highlight ? 1 : 0.1,
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 129,
+              columnNumber: 32
+            }
+          })
+        );
+      }), data.map((measurement, index) => {
+        const highlight = measurement.station === "MISSOULA INTL AP";
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("line", {
+            key: index,
+            x1: size / 1.5,
+            y1: size - margin - measurement.SNOW,
+            x2: size / 1.5 + 20,
+            y2: size - margin - measurement.SNOW,
+            stroke: highlight ? "darkorange" : "steelblue",
+            strokeOpacity: highlight ? 1 : 0.1,
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 140,
+              columnNumber: 32
+            }
+          })
+        );
+      }))), /*#__PURE__*/_reactDefault.default.createElement("div", {
+        id: "plot3",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 151,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 152,
+          columnNumber: 17
+        }
+      }, "Scatterplot: Minimum vs. Maximum Temperature (F)"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 153,
+          columnNumber: 17
+        }
+      }, "Focusing on Many Glacier"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
+        width: size,
+        height: size,
+        style: {
+          border: "1px solid black"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 154,
+          columnNumber: 17
+        }
+      }, data.map((measurement, index) => {
+        const highlight = measurement.station === "Many Glacier";
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("circle", {
+            key: index,
+            cx: 100 - measurement.TMIN,
+            cy: size - margin - measurement.TMAX,
+            r: "3",
+            fill: "none",
+            stroke: highlight ? "darkorange" : "steelblue",
+            strokeOpacity: highlight ? 1 : 0.01,
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 158,
+              columnNumber: 29
+            }
+          })
+        );
+      }))), /*#__PURE__*/_reactDefault.default.createElement("div", {
+        id: "plot4",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 170,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 171,
+          columnNumber: 17
+        }
+      }, "Scatterplot: Minimum vs. Maximum Temperature (F)"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 172,
+          columnNumber: 17
+        }
+      }, "Focusing on Kalispell Glacier Airport"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
+        width: size,
+        height: size,
+        style: {
+          border: "1px solid black"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 173,
+          columnNumber: 17
+        }
+      }, data.map((measurement, index) => {
+        const highlight = measurement.station === "KALISPELL GLACIER AP";
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("circle", {
+            key: index,
+            cx: 100 - measurement.TMIN,
+            cy: size - margin - measurement.TMAX,
+            r: "3",
+            fill: "none",
+            stroke: highlight ? "darkorange" : "steelblue",
+            strokeOpacity: highlight ? 1 : 0.01,
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 177,
+              columnNumber: 29
+            }
+          })
+        );
+      }))))
+    );
+  };
+  _s(App, "Jm65JCcgUFoenM4DufkEA80vRVI=", false, function () {
+    return [_hooksUseFetch.useFetch];
+  });
+  _c = App;
+  exports.default = App;
+  var _c;
+  $RefreshReg$(_c, "App");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

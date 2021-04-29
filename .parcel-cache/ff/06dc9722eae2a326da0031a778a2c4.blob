@@ -1,0 +1,470 @@
+var helpers = require("../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  var _react = require("react");
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _hooksUseFetch = require("./hooks/useFetch");
+  var _d3Scale = require("d3-scale");
+  var _d3Array = require("d3-array");
+  var _jsxFileName = "/Users/isabellaabulhosn/Desktop/cloned-example/src/App.js", _s = $RefreshSig$();
+  // import { geoNaturalEath1 } from "d3-geo-projection";
+  // import { scale } from "vega";
+  const App = () => {
+    _s();
+    const [data, loading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/isabellaabulhosn/cloned-example/main/montana.csv");
+    const dataSmallSample = data.slice(0, 5000);
+    // const randomSmallSample = _.sample(data, 5000)
+    const TMAXextent = _d3Array.extent(dataSmallSample, d => {
+      return +d.TMAX;
+    });
+    const AWNDextent = _d3Array.extent(data, d => {
+      return +d.AWND;
+    });
+    const SNOWextent = _d3Array.extent(data, d => {
+      return +d.SNOW;
+    });
+    const size = 300;
+    const margin = 20;
+    const axisTextAlignmentFactor = 5;
+    const maxValueOfTMAX = _d3Array.max([1, 2, 3]);
+    const yScale = _d3Scale.scaleLinear().domain(TMAXextent).// unit: km
+    range([size - margin, size - 50]);
+    // unit: pixels
+    const yScaleWind = _d3Scale.scaleLinear().domain(AWNDextent).// unit: km
+    range([size - margin, margin]);
+    // unit: pixels
+    const yScaleSnow = _d3Scale.scaleLinear().domain(SNOWextent).// unit: km
+    range([size - margin, margin]);
+    // unit: pixels
+    _bins = _d3Array.bin().thresholds(15);
+    tmaxBins = _bins(data.map(d => {
+      return +d.SNWD;
+    }));
+    const histogramLeftPadding = 10;
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement("div", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 55,
+          columnNumber: 9
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 56,
+          columnNumber: 13
+        }
+      }, "Exploratory Data Analysis INFO 474 SP 2021"), /*#__PURE__*/_reactDefault.default.createElement("h2", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 57,
+          columnNumber: 13
+        }
+      }, "Montana Weather Data"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 58,
+          columnNumber: 13
+        }
+      }, loading && "Loading data!"), /*#__PURE__*/_reactDefault.default.createElement("div", {
+        id: "plot1",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 59,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 60,
+          columnNumber: 17
+        }
+      }, "Barcode Plot: Average Daily Wind Speed (mph)"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 61,
+          columnNumber: 17
+        }
+      }, "Kalispell Glacier Airport vs. Missoula Intl Airport"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
+        width: size,
+        height: size,
+        style: {
+          border: "1px solid black"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 62,
+          columnNumber: 17
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size / 4 - 30,
+        textAnchor: "end",
+        y: size - margin + axisTextAlignmentFactor,
+        style: {
+          fontSize: 10,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 64,
+          columnNumber: 21
+        }
+      }, "0"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size / 4 - 30,
+        textAnchor: "end",
+        y: margin + axisTextAlignmentFactor,
+        style: {
+          fontSize: 10,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 72,
+          columnNumber: 21
+        }
+      }, "100"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size / 1.5 + 45,
+        textAnchor: "end",
+        y: size - margin + axisTextAlignmentFactor,
+        style: {
+          fontSize: 10,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 80,
+          columnNumber: 21
+        }
+      }, "0"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size / 2 - 30,
+        textAnchor: "end",
+        y: margin + axisTextAlignmentFactor,
+        style: {
+          fontSize: 10,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 88,
+          columnNumber: 21
+        }
+      }, "100"), /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: size / 2 - 10,
+        y1: margin - axisTextAlignmentFactor,
+        x2: size / 2 - 5,
+        y2: margin - axisTextAlignmentFactor,
+        stroke: "black",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 95,
+          columnNumber: 21
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: size / 2 - 10,
+        y1: size - margin,
+        x2: size / 2 - 5,
+        y2: size - margin,
+        stroke: "black",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 101,
+          columnNumber: 21
+        }
+      }), data.map((measurement, index) => {
+        const highlight = measurement.station === "KALISPELL GLACIER AP";
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("line", {
+            key: index,
+            x1: size / 4.5,
+            y1: yScaleWind(measurement.AWND),
+            x2: size / 4.5 + 20,
+            y2: yScaleWind(measurement.AWND),
+            stroke: highlight ? "darkorange" : "steelblue",
+            strokeOpacity: highlight ? 1 : 0.1,
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 109,
+              columnNumber: 32
+            }
+          })
+        );
+      }), data.map((measurement, index) => {
+        const highlight = measurement.station === "MISSOULA INTL AP";
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("line", {
+            key: index,
+            x1: size / 1.5,
+            y1: yScaleWind(measurement.AWND),
+            x2: size / 1.5 + 20,
+            y2: yScaleWind(measurement.AWND),
+            stroke: highlight ? "darkorange" : "steelblue",
+            strokeOpacity: highlight ? 1 : 0.1,
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 120,
+              columnNumber: 32
+            }
+          })
+        );
+      }))), /*#__PURE__*/_reactDefault.default.createElement("div", {
+        id: "plot2",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 131,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 132,
+          columnNumber: 17
+        }
+      }, "Barcode Plot: Average Snowfall (in)"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 133,
+          columnNumber: 17
+        }
+      }, "Kalispell Glacier Airport vs. Missoula Intl Airport"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
+        width: size,
+        height: size,
+        style: {
+          border: "1px solid black"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 134,
+          columnNumber: 17
+        }
+      }, data.map((measurement, index) => {
+        const highlight = measurement.station === "KALISPELL GLACIER AP";
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("line", {
+            key: index,
+            x1: size / 4.5,
+            y1: yScaleSnow(measurement.SNOW),
+            x2: size / 4.5 + 20,
+            y2: yScaleSnow(measurement.SNOW),
+            stroke: highlight ? "darkorange" : "steelblue",
+            strokeOpacity: highlight ? 1 : 0.1,
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 163,
+              columnNumber: 32
+            }
+          })
+        );
+      }), data.map((measurement, index) => {
+        const highlight = measurement.station === "MISSOULA INTL AP";
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("line", {
+            key: index,
+            x1: size / 1.5,
+            y1: yScaleSnow(measurement.SNOW),
+            x2: size / 1.5 + 20,
+            y2: yScaleSnow(measurement.SNOW),
+            stroke: highlight ? "darkorange" : "steelblue",
+            strokeOpacity: highlight ? 1 : 0.1,
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 174,
+              columnNumber: 32
+            }
+          })
+        );
+      }))), /*#__PURE__*/_reactDefault.default.createElement("div", {
+        id: "plot3",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 185,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 186,
+          columnNumber: 17
+        }
+      }, "Scatterplot: Minimum vs. Maximum Temperature (F)"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 187,
+          columnNumber: 17
+        }
+      }, "Focusing on Many Glacier"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
+        width: size,
+        height: size,
+        style: {
+          border: "1px solid black"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 188,
+          columnNumber: 17
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("text", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 189,
+          columnNumber: 21
+        }
+      }), data.map((measurement, index) => {
+        if (measurement.station === "Many Glacier") {
+          return null;
+        }
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("circle", {
+            key: index,
+            cx: 100 + +measurement.TMIN,
+            cy: size - margin - 50 - +measurement.TMAX,
+            r: "1",
+            fill: "rgba(27, 51, 71, .05)",
+            stroke: "none",
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 195,
+              columnNumber: 29
+            }
+          })
+        );
+      }), data.map((measurement, index) => {
+        if (measurement.station !== "Many Glacier") {
+          return null;
+        }
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("circle", {
+            key: index,
+            cx: 100 + +measurement.TMIN,
+            cy: size - margin - 50 - +measurement.TMAX,
+            r: "1",
+            fill: "rgba(100, 55, 0, 1)",
+            stroke: "none",
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 209,
+              columnNumber: 29
+            }
+          })
+        );
+      }))), /*#__PURE__*/_reactDefault.default.createElement("div", {
+        id: "plot4",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 220,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 221,
+          columnNumber: 17
+        }
+      }, "Scatterplot: Minimum vs. Maximum Temperature (F)"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 222,
+          columnNumber: 17
+        }
+      }, "Focusing on Kalispell Glacier Airport"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
+        width: size,
+        height: size,
+        style: {
+          border: "1px solid black"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 223,
+          columnNumber: 17
+        }
+      }, data.map((measurement, index) => {
+        if (measurement.station === "KALISPELL GLACIER AP") {
+          return null;
+        }
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("circle", {
+            key: index,
+            cx: 100 + +measurement.TMIN,
+            cy: size - margin - 50 - +measurement.TMAX,
+            r: "1",
+            fill: "rgba(27, 51, 71, .05)",
+            stroke: "none",
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 229,
+              columnNumber: 29
+            }
+          })
+        );
+      }), data.map((measurement, index) => {
+        if (measurement.station !== "KALISPELL GLACIER AP") {
+          return null;
+        }
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("circle", {
+            key: index,
+            cx: 100 + +measurement.TMIN,
+            cy: size - margin - 50 - +measurement.TMAX,
+            r: "1",
+            fill: "rgba(100, 55, 0, 1)",
+            stroke: "none",
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 243,
+              columnNumber: 29
+            }
+          })
+        );
+      }))))
+    );
+  };
+  _s(App, "Jm65JCcgUFoenM4DufkEA80vRVI=", false, function () {
+    return [_hooksUseFetch.useFetch];
+  });
+  _c = App;
+  exports.default = App;
+  var _c;
+  $RefreshReg$(_c, "App");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

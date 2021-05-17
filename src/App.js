@@ -1,7 +1,7 @@
-import React from "react";
 import { useFetch } from "./hooks/useFetch";
 import { scaleLinear } from "d3-scale";
 import { extent, max, min, bin, range } from "d3-array";
+import React, { useState } from "react";
 //import { geoNaturalEath1 } from "d3-geo-projection";
 //import { scale } from "vega";
 
@@ -53,6 +53,18 @@ const App = () => {
 
     const histogramLeftPadding = 10;
 
+    const [selectedStation, setSelectedStation] = useState(
+        "KALISPELL GLACIER AP"
+      );
+
+    const [selectedMax, setSelectedMax] = useState(
+        "110"
+    );
+
+    const [selectedMin, setSelectedMin] = useState(
+        "-40"
+    );
+
     return (
         <div>
             <h1>Exploratory Data Analysis INFO 474 SP 2021</h1>
@@ -60,7 +72,7 @@ const App = () => {
             <p>{loading && "Loading data!"}</p>
             <div id='plot1'>
                 <h3>Barcode Plot: Average Daily Wind Speed (mph)</h3>
-                <p>Kalispell Glacier Airport vs. Missoula Intl Airport</p>
+                <h4>Hover over the plot to see the average daily wind speeds for different weather stations.</h4>
                 <svg width={size} height={size} style={{ border: "1px solid black" }}>
                     {/* left 0 */}
                     <text 
@@ -79,21 +91,21 @@ const App = () => {
                         37
                     </text>
                     {/* right 0 */}
-                    <text 
+                    {/* <text 
                     x={size - barcodeLength + axisTextAlignmentFactor} 
                     textAnchor="end"
                     y={size - margin + axisTextAlignmentFactor} 
                     style={{ fontSize: 15, fontFamily: "Gill Sans, sans serif" }}>
                         0
-                    </text>
+                    </text> */}
                     {/* right 37 */}
-                    <text 
+                    {/* <text 
                     x={size - barcodeLength + axisTextAlignmentFactor * 3} 
                     textAnchor="end"
                     y={margin + axisTextAlignmentFactor / 2} 
                     style={{ fontSize: 15, fontFamily: "Gill Sans, sans serif" }}>
                         37
-                    </text>
+                    </text> */}
                     {/* left 37 tick */}
                     <line 
                         x1={size / 4 - tickLength} 
@@ -111,41 +123,45 @@ const App = () => {
                         stroke={"black"} 
                         stroke-width= {"3"} />
                     {/* right 37 tick */}
-                    <line 
+                    {/* <line 
                         x1={size - (size / 4) + tickLength * 2} 
                         y1={margin} 
                         x2={size - (size / 4) + tickLength} 
                         y2={margin}
                         stroke={"black"} 
-                        stroke-width= {"3"} />
+                        stroke-width= {"3"} /> */}
                     {/* right 0 tick */}
-                    <line
+                    {/* <line
                         x1={size - (size / 4) + tickLength * 2}
                         y1={size - margin}
                         x2={size - (size / 4) + tickLength}
                         y2={size - margin}
                         stroke={"black"}
-                        stroke-width= {"3"} />
+                        stroke-width= {"3"} /> */}
                     {/* left label */}
-                    <text 
+                    {/* <text 
                     x={size / 3 + margin / 2} 
                     textAnchor="end"
                     y={size - margin / 2.5} 
                     style={{ fontSize: 18, fontFamily: "Gill Sans, sans serif" }}>
                         Kallispell
-                    </text>
+                    </text> */}
                     {/* right label */}
-                    <text 
+                    {/* <text 
                     x={size - (size / 4) - margin / 2} 
                     textAnchor="end"
                     y={size - margin / 2.5} 
                     style={{ fontSize: 18, fontFamily: "Gill Sans, sans serif" }}>
                         Missoula
-                    </text>
+                    </text> */}
                     {data.map((measurement, index) => {
-                        const highlight = measurement.station === "KALISPELL GLACIER AP";
+                        //const highlight = measurement.station === "KALISPELL GLACIER AP";
+                        const highlight = measurement.station === selectedStation;
                         return <line 
                         key={index} 
+                        onMouseEnter={() => {
+                            setSelectedStation(measurement.station);
+                          }}
                         x1={size / 4} 
                         y1={yScaleWind(measurement.AWND)} 
                         x2={size / 4 + barcodeLength} 
@@ -153,10 +169,22 @@ const App = () => {
                         stroke={highlight ? "darkorange" : "steelblue"} 
                         strokeOpacity ={highlight ? 1 : 0.1} />
                     })}
-                    {data.map((measurement, index) => {
-                        const highlight = measurement.station === "MISSOULA INTL AP";
+                    <text
+                        x={size - 200}
+                        y={size - margin}
+                        style={{ fontSize: 10, fontFamily: "Gill Sans, sans serif" }}
+                        >
+                    {selectedStation}
+                    </text>
+                    {/* {data.map((measurement, index) => {
+                        //const highlight = measurement.station === "MISSOULA INTL AP";
+                        const highlight = measurement.station === selectedStation;
                         return <line 
                         key={index} 
+                        key={index} 
+                        onMouseEnter={() => {
+                            setSelectedStation(measurement.station);
+                          }}
                         x1={size - (size / 4) - barcodeLength} 
                         y1={yScaleWind(measurement.AWND)} 
                         x2={size - (size / 4)} 
@@ -164,15 +192,22 @@ const App = () => {
                         stroke={highlight ? "darkorange" : "steelblue"} 
                         strokeOpacity ={highlight ? 1 : 0.1} />
                     })}
+                    <text
+                        x={size - 200}
+                        y={size - margin}
+                        style={{ fontSize: 10, fontFamily: "Gill Sans, sans serif" }}
+                        >
+                    {selectedStation}
+                    </text> */}
                 </svg>
-                <p>I wanted to use this data to compare the Kalispell Glacier Airport and the Missoula International Airport.  These are the 2 airports I would fly into when I go to Montana, and I was wondering if I could gain some insight into which have better or worse weather which could be tied into flight times or delays.</p>
-                <p><strong>Insight #1</strong>: Compared to all of the weather stations in Montana, the airport at Kalispell has average daily wind speeds mostly on the lower end.  The highest wind speeds the Kalispell airports get are around 15mph.</p>
+                <p>I wanted to compare different weather stations and their average daily windspeeds.  Interactivity was an asset for this visualization because we can change the different weather station we are focusin on and color is used to help highlight this even further.</p>
+                {/* <p><strong>Insight #1</strong>: Compared to all of the weather stations in Montana, the airport at Kalispell has average daily wind speeds mostly on the lower end.  The highest wind speeds the Kalispell airports get are around 15mph.</p>
                 <p><strong>Insight #2</strong>: Compared to all of the weather stations in Montant, the airport in Missoula has fairly low average daily wind speeds, but one day had a pretty high wind speed of about 20ish mph.</p>
-                <p><strong>Insight #3</strong>: In comparison to each other, it seems the Missoula airport has lower wind speeds on average, aside from a few outliers.</p>
+                <p><strong>Insight #3</strong>: In comparison to each other, it seems the Missoula airport has lower wind speeds on average, aside from a few outliers.</p> */}
             </div>
             <div id='plot2'>
                 <h3>Barcode Plot: Average Snowfall (in)</h3>
-                <p>Kalispell Glacier Airport vs. Missoula Intl Airport</p>
+                <h4>Hover over the plot to see the average snowfall for different weather stations.</h4>
                 <svg width={size} height={size} style={{ border: "1px solid black" }}>
                     {/* left 0 */}
                     <text 
@@ -191,21 +226,21 @@ const App = () => {
                         37
                     </text>
                     {/* right 0 */}
-                    <text 
+                    {/* <text 
                     x={size - barcodeLength + axisTextAlignmentFactor} 
                     textAnchor="end"
                     y={size - margin + axisTextAlignmentFactor} 
                     style={{ fontSize: 15, fontFamily: "Gill Sans, sans serif" }}>
                         0
-                    </text>
+                    </text> */}
                     {/* right 37 */}
-                    <text 
+                    {/* <text 
                     x={size - barcodeLength + axisTextAlignmentFactor * 3} 
                     textAnchor="end"
                     y={margin + axisTextAlignmentFactor / 2} 
                     style={{ fontSize: 15, fontFamily: "Gill Sans, sans serif" }}>
                         37
-                    </text>
+                    </text> */}
                     {/* left 37 tick */}
                     <line 
                         x1={size / 4 - tickLength} 
@@ -223,41 +258,44 @@ const App = () => {
                         stroke={"black"} 
                         stroke-width= {"3"} />
                     {/* right 37 tick */}
-                    <line 
+                    {/* <line 
                         x1={size - (size / 4) + tickLength * 2} 
                         y1={margin} 
                         x2={size - (size / 4) + tickLength} 
                         y2={margin}
                         stroke={"black"} 
-                        stroke-width= {"3"} />
+                        stroke-width= {"3"} /> */}
                     {/* right 0 tick */}
-                    <line
+                    {/* <line
                         x1={size - (size / 4) + tickLength * 2}
                         y1={size - margin}
                         x2={size - (size / 4) + tickLength}
                         y2={size - margin}
                         stroke={"black"}
-                        stroke-width= {"3"} />
+                        stroke-width= {"3"} /> */}
                     {/* left label */}
-                    <text 
+                    {/* <text 
                     x={size / 3 + margin / 2} 
                     textAnchor="end"
                     y={size - margin / 2.5} 
                     style={{ fontSize: 18, fontFamily: "Gill Sans, sans serif" }}>
                         Kallispell
-                    </text>
+                    </text> */}
                     {/* right label */}
-                    <text 
+                    {/* <text 
                     x={size - (size / 4) - margin / 2} 
                     textAnchor="end"
                     y={size - margin / 2.5} 
                     style={{ fontSize: 18, fontFamily: "Gill Sans, sans serif" }}>
                         Missoula
-                    </text>
+                    </text> */}
                     {data.map((measurement, index) => {
-                        const highlight = measurement.station === "KALISPELL GLACIER AP";
+                        const highlight = measurement.station === selectedStation;
                         return <line 
                         key={index} 
+                        onMouseEnter={() => {
+                            setSelectedStation(measurement.station);
+                          }}
                         x1={size / 4} 
                         y1={yScaleSnow(measurement.SNOW)} 
                         x2={size / 4 + barcodeLength} 
@@ -265,7 +303,14 @@ const App = () => {
                         stroke={highlight ? "darkorange" : "steelblue"} 
                         strokeOpacity ={highlight ? 1 : 0.1} />
                     })}
-                    {data.map((measurement, index) => {
+                    <text
+                        x={size - 200}
+                        y={size - margin}
+                        style={{ fontSize: 10, fontFamily: "Gill Sans, sans serif" }}
+                        >
+                    {selectedStation}
+                    </text>
+                    {/* {data.map((measurement, index) => {
                         const highlight = measurement.station === "MISSOULA INTL AP";
                         return <line 
                         key={index} 
@@ -275,16 +320,16 @@ const App = () => {
                         y2={yScaleSnow(measurement.SNOW)}
                         stroke={highlight ? "darkorange" : "steelblue"} 
                         strokeOpacity ={highlight ? 1 : 0.1} />
-                    })}
+                    })} */}
                 </svg>
-                <p>I next wanted to look at average snowfall which has impacted my flights' landing times before.</p>
-                <p><strong>Insight #4</strong>: Compared to all of the weather stations in Montana, the airport at Kalispell got the highest average snowfall in a day.</p>
+                <p>I next wanted to do something similar, but this time with average snowfall.  This will be interesting in itself as well as in comparison to the wind speed.</p>
+                {/* <p><strong>Insight #4</strong>: Compared to all of the weather stations in Montana, the airport at Kalispell got the highest average snowfall in a day.</p>
                 <p><strong>Insight #5</strong>: Compared to all of the weather stations in Montant, the airport in Missoula seems like it gets a consistent amount of snow.  Only a few other weather stations are getting more average snowfall.</p>
-                <p><strong>Insight #6</strong>: In comparison to each other, based on this data it seems like there isn't a huge difference in snowfall between the two airports, aside from the one day Kalispell got the highest snowfall.</p>
+                <p><strong>Insight #6</strong>: In comparison to each other, based on this data it seems like there isn't a huge difference in snowfall between the two airports, aside from the one day Kalispell got the highest snowfall.</p> */}
             </div>
             <div id='plot3'>
                 <h3>Scatterplot: Minimum vs. Maximum Temperature (F)</h3>
-                <p>Focusing on Many Glacier</p>
+                <h4>Hover over a point to see the maximum temperature</h4>
                 <svg width={size} height={size} style={{ border: "1px solid black" }}>
                     {/* y axis */}
                     <line 
@@ -349,6 +394,9 @@ const App = () => {
                         return (
                             <circle 
                                 key={index} 
+                                onMouseEnter={() => {
+                                    setSelectedMax(measurement.TMAX);
+                                  }}
                                 cx={250 + +measurement.TMIN} 
                                 cy={size - margin - 150 - +measurement.TMAX} 
                                 r="1" 
@@ -364,6 +412,9 @@ const App = () => {
                         return (
                             <circle 
                                 key={index} 
+                                onMouseEnter={() => {
+                                    setSelectedMax(measurement.TMAX);
+                                  }}
                                 cx={250 + +measurement.TMIN} 
                                 cy={size - margin - 150 - +measurement.TMAX} 
                                 r="1.5" 
@@ -372,14 +423,22 @@ const App = () => {
                                 stroke-opacity="0.2"  /> 
                         );
                     })}
+                    <text
+                        x={size - 200}
+                        y={size - margin}
+                        style={{ fontSize: 10, fontFamily: "Gill Sans, sans serif" }}
+                        >
+                        Max Temp: {selectedMax}
+                    </text>
                 </svg>
                 <p>I also wanted to look into the temperatures of two different places in Glacier National Park.  It is so big and I know the temperatures can drastically vary.</p>
-                <p><strong>Insight #7</strong>: This graph was slightly hard to get the axes because the minimum temperatures weren't 0.  The ranges of TMAX was about -10 to 110.  The ranges of TMIN were about -35 to 80.</p>
-                <p><strong>Insight #8</strong>: You can see Many Glacier has some of the lowest temperatures compared to the rest of Montana.  There are a few extreme outliers.</p>
+                <p>Adding interactivity was important because it allows us to get the actual maximum temperature value.</p>
+                {/* <p><strong>Insight #7</strong>: This graph was slightly hard to get the axes because the minimum temperatures weren't 0.  The ranges of TMAX was about -10 to 110.  The ranges of TMIN were about -35 to 80.</p>
+                <p><strong>Insight #8</strong>: You can see Many Glacier has some of the lowest temperatures compared to the rest of Montana.  There are a few extreme outliers.</p> */}
             </div>
             <div id='plot4'>
                 <h3>Scatterplot: Minimum vs. Maximum Temperature (F)</h3>
-                <p>Focusing on Kalispell Glacier Airport</p>
+                <h4>Hover over a point to see the minimum temperature</h4>
                 <svg width={size} height={size} style={{ border: "1px solid black" }}>
                     {/* y axis */}
                     <line 
@@ -444,6 +503,9 @@ const App = () => {
                         return (
                             <circle 
                                 key={index} 
+                                onMouseEnter={() => {
+                                    setSelectedMin(measurement.TMIN);
+                                  }}
                                 cx={250 + +measurement.TMIN} 
                                 cy={size - margin - 150 - +measurement.TMAX} 
                                 r="1" 
@@ -459,6 +521,9 @@ const App = () => {
                         return (
                             <circle 
                                 key={index} 
+                                onMouseEnter={() => {
+                                    setSelectedMin(measurement.TMIN);
+                                  }}
                                 cx={250 + +measurement.TMIN} 
                                 cy={size - margin - 150 - +measurement.TMAX} 
                                 r="1.5" 
@@ -467,13 +532,24 @@ const App = () => {
                                 stroke-opacity="0.2" />
                         );
                     })}
+                    <text
+                        x={size - 200}
+                        y={size - margin}
+                        style={{ fontSize: 10, fontFamily: "Gill Sans, sans serif" }}
+                        >
+                        Min Temp: {selectedMin}
+                    </text>
                 </svg>
                 <p>This time I focused on the Kalispell Glacier Airport.</p>
-                <p><strong>Insight #9</strong>: I see that this weather station has a few outliers as well but less than Many Glacier.</p>
-                <p><strong>Insight #10</strong>: There is a more concentrated cluster of higher temperatures than at Many Glacier.</p>
+                <p>Adding interactivity was important because it allows us to get the actual maximum temperature value.</p>
+                {/* <p><strong>Insight #9</strong>: I see that this weather station has a few outliers as well but less than Many Glacier.</p>
+                <p><strong>Insight #10</strong>: There is a more concentrated cluster of higher temperatures than at Many Glacier.</p> */}
             </div>
             <div>
-                <h2>Write-up</h2>
+                <h2>Write-up for Assignment 3</h2>
+                <p>We decided to include hover interactions for our visualizations since this is easy for the user to view instead of having to filter through values by clicking. Our hover interactions show the user the exact values that they are hovering over such as maximum temperature, minimum temperature, weather station etc. We considered using a drop-down menu or radio buttons for the user to click through which would dynamically change the users’ view, however, we decided to favor the simplicity of a hover interaction. Our rationale for doing so was that our users should be able to get the most appropriate metadata for their point of interest in our bar chart or scatter plot. Therefore, if a particular part of our visualization interests the user, they could hover over that part and based on what they are viewing they would get the most appropriate data(such as max temp of the point they hover over, or for which station they are viewing a barplot of avg daily windspeed etc.). 
+		In terms of splitting up work, we started with Izzy’s assignment 2 and worked together to update the visualizations to be interactive. Izzy actually wrote the code while Jordan and Shravan helped figure out what to code. We all then split up the writeups and insights evenly. We spent about 3 hours each on this assignment. The aspects that took the most time were updating our code so that the interactions with the visualizations were exactly what we wanted.</p>
+                <h2>Write-up from Assignment 2</h2>
                 <p>I chose to work with the weather dataset, which contains daily U.S. weather measurements from 2017.  The data has been pre transformed, in the sense that some weather stations were filtered out if the measurements were too sparse.  In this dataset, there are 416,937 rows and 15 different columns.  The columns are: station (which is the name of the weather station), state, latitude, longitude, elevation, date, TMIN (minimum temp in F), TMAX (maximum temp in F), TAVG (average temp in F), AWND (average daily wind speed in mph), WDF5 (direction of fastest 5-second wind in degrees), WSF5 (fastest 5-second wind speed in mph), SNOW (snowfall in inches), SNWD (snow depth in inches), and PRCP (precipitation in inches).  Immediately, I notice that there are some NaN values in the dataset.</p>
                 <p>Because this weather dataset had hundreds of thousands of rows, I decided to narrow it down to just Montana.  The initial reason I was trying to make my dataset smaller was because it was taking too long to load on the website as I was creating my visuals.  But this was also a way to cut down the dataset in a beneficial and meaningful way.  I decided to explore 3 questions in this assignment.  First, I broadly wanted to explore throughout all of my visualizations how the weather measurements differ in Montana.  I next wanted to look at how the weather differs at different airports, specifically the Kalispell Glacier Airport and the Missoula International Airport.  These are the two airports I fly into when I visit my grandparents in Montana, and I thought it would be interesting to compare the weather at the two and see if I could draw any conclusions about which airport is more likely to have weather related delays.  I chose to look at the daily average wind speed (AWND) and average snowfall (SNOW) because I felt like those 2 factors were likely to impact a plane’s travel.  I chose to do two side by side barcode plots.  This not only allowed me to compare the two airports to each other, I was also able to compare each individual airport to the rest of the weather stations throughout the state.  I thought that was really beneficial and effective for me to draw conclusions.  For my final question, I wanted to look at how temperatures differ across the two weather stations in Glacier National Park.  I have been there and it is a huge park, and so interesting that the weather can fluctuate so much in different parts of the same park.  To do this, I made scatter plots of two of the Glacier National Park weather stations.  Similarly to my other visualizations, I chose to use color to separate the weather station I was focusing on from all the other weather stations in Montana.  This way, I was able to compare the two stations in Glacier, while also being able to compare them to the rest of the state.</p>
                 <p>While completing this project, I learned a lot about the process and about the code in general.  One of the biggest learning curves was choosing the x and y points.  It took me a while to finally understand how to effectively place things.  Creating the labels and tick marks was more time consuming because I had to make sure everything lined up well.  I also found that it can be helpful to narrow down your dataset if it can provide opportunity for a more focused analysis.  I learned that color can be an effective medium to allow for a multi-layer analysis of the same visualization.  I also learned that using contrasting colors is important which I tried to do.</p>

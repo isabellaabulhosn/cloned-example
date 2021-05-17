@@ -1,0 +1,851 @@
+var helpers = require("../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  var _hooksUseFetch = require("./hooks/useFetch");
+  var _d3Scale = require("d3-scale");
+  var _d3Array = require("d3-array");
+  var _react = require("react");
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _jsxFileName = "/Users/isabellaabulhosn/Desktop/cloned-example/src/App.js", _s = $RefreshSig$();
+  // import { geoNaturalEath1 } from "d3-geo-projection";
+  // import { scale } from "vega";
+  const App = () => {
+    _s();
+    const [data, loading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/isabellaabulhosn/cloned-example/main/montana.csv");
+    const dataSmallSample = data.slice(0, 5000);
+    const TMAXextent = _d3Array.extent(dataSmallSample, d => {
+      return +d.TMAX;
+    });
+    const AWNDextent = _d3Array.extent(data, d => {
+      return +d.AWND;
+    });
+    const SNOWextent = _d3Array.extent(data, d => {
+      return +d.SNOW;
+    });
+    const size = 500;
+    const margin = 50;
+    const axisTextAlignmentFactor = 6;
+    const barcodeLength = 100;
+    const tickLength = 8;
+    const numSize = 15;
+    const maxValueOfTMAX = _d3Array.max([1, 2, 3]);
+    const yScale = _d3Scale.scaleLinear().domain(TMAXextent).// unit: km
+    range([size - margin, size - 50]);
+    // unit: pixels
+    const yScaleWind = _d3Scale.scaleLinear().domain(AWNDextent).// unit: km
+    range([size - margin, margin]);
+    // unit: pixels
+    const yScaleSnow = _d3Scale.scaleLinear().domain(SNOWextent).// unit: km
+    range([size - margin, margin]);
+    // unit: pixels
+    _bins = _d3Array.bin().thresholds(15);
+    tmaxBins = _bins(data.map(d => {
+      return +d.SNWD;
+    }));
+    const histogramLeftPadding = 10;
+    const [selectedStation, setSelectedStation] = _react.useState("KALISPELL GLACIER AP");
+    const [selectedMax, setSelectedMax] = _react.useState("110");
+    const [selectedMin, setSelectedMin] = _react.useState("-40");
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement("div", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 69,
+          columnNumber: 9
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 70,
+          columnNumber: 13
+        }
+      }, "Exploratory Data Analysis INFO 474 SP 2021"), /*#__PURE__*/_reactDefault.default.createElement("h2", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 71,
+          columnNumber: 13
+        }
+      }, "Montana Weather Data"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 72,
+          columnNumber: 13
+        }
+      }, loading && "Loading data!"), /*#__PURE__*/_reactDefault.default.createElement("div", {
+        id: "plot1",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 73,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 74,
+          columnNumber: 17
+        }
+      }, "Barcode Plot: Average Daily Wind Speed (mph)"), /*#__PURE__*/_reactDefault.default.createElement("h4", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 75,
+          columnNumber: 17
+        }
+      }, "Hover over the plot to see the average daily wind speeds for different weather stations."), /*#__PURE__*/_reactDefault.default.createElement("svg", {
+        width: size,
+        height: size,
+        style: {
+          border: "1px solid black"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 76,
+          columnNumber: 17
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: barcodeLength,
+        textAnchor: "end",
+        y: size - margin + axisTextAlignmentFactor,
+        style: {
+          fontSize: 15,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 78,
+          columnNumber: 21
+        }
+      }, "0"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: barcodeLength,
+        textAnchor: "end",
+        y: margin + axisTextAlignmentFactor / 2,
+        style: {
+          fontSize: 15,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 86,
+          columnNumber: 21
+        }
+      }, "37"), /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: size / 4 - tickLength,
+        y1: margin,
+        x2: size / 4 - tickLength * 2,
+        y2: margin,
+        stroke: "black",
+        "stroke-width": "3",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 110,
+          columnNumber: 21
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: size / 4 - tickLength,
+        y1: size - margin,
+        x2: size / 4 - tickLength * 2,
+        y2: size - margin,
+        stroke: "black",
+        "stroke-width": "3",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 118,
+          columnNumber: 21
+        }
+      }), data.map((measurement, index) => {
+        // const highlight = measurement.station === "KALISPELL GLACIER AP";
+        const highlight = measurement.station === selectedStation;
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("line", {
+            key: index,
+            onMouseEnter: () => {
+              setSelectedStation(measurement.station);
+            },
+            x1: size / 4,
+            y1: yScaleWind(measurement.AWND),
+            x2: size / 4 + barcodeLength,
+            y2: yScaleWind(measurement.AWND),
+            stroke: highlight ? "darkorange" : "steelblue",
+            strokeOpacity: highlight ? 1 : 0.1,
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 160,
+              columnNumber: 32
+            }
+          })
+        );
+      }), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size - 200,
+        y: size - margin,
+        style: {
+          fontSize: 10,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 172,
+          columnNumber: 21
+        }
+      }, selectedStation)), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 203,
+          columnNumber: 17
+        }
+      }, "I wanted to compare different weather stations and their average daily windspeeds.  Interactivity was an asset for this visualization because we can change the different weather station we are focusin on and color is used to help highlight this even further.")), /*#__PURE__*/_reactDefault.default.createElement("div", {
+        id: "plot2",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 208,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 209,
+          columnNumber: 17
+        }
+      }, "Barcode Plot: Average Snowfall (in)"), /*#__PURE__*/_reactDefault.default.createElement("h4", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 210,
+          columnNumber: 17
+        }
+      }, "Hover over the plot to see the average snowfall for different weather stations."), /*#__PURE__*/_reactDefault.default.createElement("svg", {
+        width: size,
+        height: size,
+        style: {
+          border: "1px solid black"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 211,
+          columnNumber: 17
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: barcodeLength,
+        textAnchor: "end",
+        y: size - margin + axisTextAlignmentFactor,
+        style: {
+          fontSize: 15,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 213,
+          columnNumber: 21
+        }
+      }, "0"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: barcodeLength,
+        textAnchor: "end",
+        y: margin + axisTextAlignmentFactor / 2,
+        style: {
+          fontSize: 15,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 221,
+          columnNumber: 21
+        }
+      }, "37"), /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: size / 4 - tickLength,
+        y1: margin,
+        x2: size / 4 - tickLength * 2,
+        y2: margin,
+        stroke: "black",
+        "stroke-width": "3",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 245,
+          columnNumber: 21
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: size / 4 - tickLength,
+        y1: size - margin,
+        x2: size / 4 - tickLength * 2,
+        y2: size - margin,
+        stroke: "black",
+        "stroke-width": "3",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 253,
+          columnNumber: 21
+        }
+      }), data.map((measurement, index) => {
+        const highlight = measurement.station === selectedStation;
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("line", {
+            key: index,
+            onMouseEnter: () => {
+              setSelectedStation(measurement.station);
+            },
+            x1: size / 4,
+            y1: yScaleSnow(measurement.SNOW),
+            x2: size / 4 + barcodeLength,
+            y2: yScaleSnow(measurement.SNOW),
+            stroke: highlight ? "darkorange" : "steelblue",
+            strokeOpacity: highlight ? 1 : 0.1,
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 294,
+              columnNumber: 32
+            }
+          })
+        );
+      }), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size - 200,
+        y: size - margin,
+        style: {
+          fontSize: 10,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 306,
+          columnNumber: 21
+        }
+      }, selectedStation)), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 325,
+          columnNumber: 17
+        }
+      }, "I next wanted to do something similar, but this time with average snowfall.  This will be interesting in itself as well as in comparison to the wind speed.")), /*#__PURE__*/_reactDefault.default.createElement("div", {
+        id: "plot3",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 330,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 331,
+          columnNumber: 17
+        }
+      }, "Scatterplot: Minimum vs. Maximum Temperature (F)"), /*#__PURE__*/_reactDefault.default.createElement("h4", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 332,
+          columnNumber: 17
+        }
+      }, "Hover over a point to see the maximum temperature"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
+        width: size,
+        height: size,
+        style: {
+          border: "1px solid black"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 333,
+          columnNumber: 17
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: margin * 2,
+        y1: margin * 3,
+        x2: margin * 2,
+        y2: size - margin * 2,
+        stroke: "black",
+        "stroke-width": "3",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 335,
+          columnNumber: 21
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: margin * 2,
+        y1: size - margin * 2,
+        x2: size - margin * 2,
+        y2: size - margin * 2,
+        stroke: "black",
+        "stroke-width": "3",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 343,
+          columnNumber: 21
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: margin * 2 - axisTextAlignmentFactor,
+        textAnchor: "end",
+        y: size - margin * 2 + axisTextAlignmentFactor * 2,
+        style: {
+          fontSize: 15,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 351,
+          columnNumber: 21
+        }
+      }, "-40"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: margin * 2 - axisTextAlignmentFactor * 2,
+        textAnchor: "end",
+        y: margin * 3 + axisTextAlignmentFactor * 2,
+        style: {
+          fontSize: 15,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 359,
+          columnNumber: 21
+        }
+      }, "110"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size - margin * 2,
+        textAnchor: "end",
+        y: size - margin * 2 + axisTextAlignmentFactor * 4,
+        style: {
+          fontSize: 15,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 367,
+          columnNumber: 21
+        }
+      }, "100"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size / 2,
+        textAnchor: "end",
+        y: size - margin * 2 + axisTextAlignmentFactor * 4,
+        style: {
+          fontSize: 12,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 375,
+          columnNumber: 21
+        }
+      }, "Min Temp"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: margin * 2 - axisTextAlignmentFactor,
+        textAnchor: "end",
+        y: size / 2,
+        style: {
+          fontSize: 12,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 383,
+          columnNumber: 21
+        }
+      }, "Max Temp"), data.map((measurement, index) => {
+        if (measurement.station === "Many Glacier") {
+          return null;
+        }
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("circle", {
+            key: index,
+            onMouseEnter: () => {
+              setSelectedMax(measurement.TMAX);
+            },
+            cx: 250 + +measurement.TMIN,
+            cy: size - margin - 150 - +measurement.TMAX,
+            r: "1",
+            fill: "rgba(176, 196, 222, .15)",
+            stroke: "lightsteelblue",
+            "stroke-opacity": "0.2",
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 395,
+              columnNumber: 29
+            }
+          })
+        );
+      }), data.map((measurement, index) => {
+        if (measurement.station !== "Many Glacier") {
+          return null;
+        }
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("circle", {
+            key: index,
+            onMouseEnter: () => {
+              setSelectedMax(measurement.TMAX);
+            },
+            cx: 250 + +measurement.TMIN,
+            cy: size - margin - 150 - +measurement.TMAX,
+            r: "1.5",
+            fill: "rgba(255, 165, 0, .85)",
+            stroke: "darkorange",
+            "stroke-opacity": "0.2",
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 413,
+              columnNumber: 29
+            }
+          })
+        );
+      }), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size - 200,
+        y: size - margin,
+        style: {
+          fontSize: 10,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 426,
+          columnNumber: 21
+        }
+      }, "Max Temp: ", selectedMax)), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 434,
+          columnNumber: 17
+        }
+      }, "I also wanted to look into the temperatures of two different places in Glacier National Park.  It is so big and I know the temperatures can drastically vary."), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 435,
+          columnNumber: 17
+        }
+      }, "Adding interactivity was important because it allows us to get the actual maximum temperature value.")), /*#__PURE__*/_reactDefault.default.createElement("div", {
+        id: "plot4",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 439,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 440,
+          columnNumber: 17
+        }
+      }, "Scatterplot: Minimum vs. Maximum Temperature (F)"), /*#__PURE__*/_reactDefault.default.createElement("h4", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 441,
+          columnNumber: 17
+        }
+      }, "Hover over a point to see the minimum temperature"), /*#__PURE__*/_reactDefault.default.createElement("svg", {
+        width: size,
+        height: size,
+        style: {
+          border: "1px solid black"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 442,
+          columnNumber: 17
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: margin * 2,
+        y1: margin * 3,
+        x2: margin * 2,
+        y2: size - margin * 2,
+        stroke: "black",
+        "stroke-width": "3",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 444,
+          columnNumber: 21
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("line", {
+        x1: margin * 2,
+        y1: size - margin * 2,
+        x2: size - margin * 2,
+        y2: size - margin * 2,
+        stroke: "black",
+        "stroke-width": "3",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 452,
+          columnNumber: 21
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: margin * 2 - axisTextAlignmentFactor,
+        textAnchor: "end",
+        y: size - margin * 2 + axisTextAlignmentFactor * 2,
+        style: {
+          fontSize: 15,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 460,
+          columnNumber: 21
+        }
+      }, "-40"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: margin * 2 - axisTextAlignmentFactor * 2,
+        textAnchor: "end",
+        y: margin * 3 + axisTextAlignmentFactor * 2,
+        style: {
+          fontSize: 15,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 468,
+          columnNumber: 21
+        }
+      }, "110"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size - margin * 2,
+        textAnchor: "end",
+        y: size - margin * 2 + axisTextAlignmentFactor * 4,
+        style: {
+          fontSize: 15,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 476,
+          columnNumber: 21
+        }
+      }, "100"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size / 2,
+        textAnchor: "end",
+        y: size - margin * 2 + axisTextAlignmentFactor * 4,
+        style: {
+          fontSize: 12,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 484,
+          columnNumber: 21
+        }
+      }, "Min Temp"), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: margin * 2 - axisTextAlignmentFactor,
+        textAnchor: "end",
+        y: size / 2,
+        style: {
+          fontSize: 12,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 492,
+          columnNumber: 21
+        }
+      }, "Max Temp"), data.map((measurement, index) => {
+        if (measurement.station === "KALISPELL GLACIER AP") {
+          return null;
+        }
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("circle", {
+            key: index,
+            onMouseEnter: () => {
+              setSelectedMin(measurement.TMIN);
+            },
+            cx: 250 + +measurement.TMIN,
+            cy: size - margin - 150 - +measurement.TMAX,
+            r: "1",
+            fill: "rgba(176, 196, 222, .15)",
+            stroke: "lightsteelblue",
+            "stroke-opacity": "0.2",
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 504,
+              columnNumber: 29
+            }
+          })
+        );
+      }), data.map((measurement, index) => {
+        if (measurement.station !== "KALISPELL GLACIER AP") {
+          return null;
+        }
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("circle", {
+            key: index,
+            onMouseEnter: () => {
+              setSelectedMin(measurement.TMIN);
+            },
+            cx: 250 + +measurement.TMIN,
+            cy: size - margin - 150 - +measurement.TMAX,
+            r: "1.5",
+            fill: "rgba(255, 165, 0, .85)",
+            stroke: "darkorange",
+            "stroke-opacity": "0.2",
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 522,
+              columnNumber: 29
+            }
+          })
+        );
+      }), /*#__PURE__*/_reactDefault.default.createElement("text", {
+        x: size - 200,
+        y: size - margin,
+        style: {
+          fontSize: 10,
+          fontFamily: "Gill Sans, sans serif"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 535,
+          columnNumber: 21
+        }
+      }, "Min Temp: ", selectedMin)), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 543,
+          columnNumber: 17
+        }
+      }, "This time I focused on the Kalispell Glacier Airport."), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 544,
+          columnNumber: 17
+        }
+      }, "Adding interactivity was important because it allows us to get the actual maximum temperature value.")), /*#__PURE__*/_reactDefault.default.createElement("div", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 548,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h2", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 549,
+          columnNumber: 17
+        }
+      }, "Write-up for Assignment 3"), /*#__PURE__*/_reactDefault.default.createElement("h2", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 550,
+          columnNumber: 17
+        }
+      }, "Write-up from Assignment 2"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 551,
+          columnNumber: 17
+        }
+      }, "I chose to work with the weather dataset, which contains daily U.S. weather measurements from 2017.  The data has been pre transformed, in the sense that some weather stations were filtered out if the measurements were too sparse.  In this dataset, there are 416,937 rows and 15 different columns.  The columns are: station (which is the name of the weather station), state, latitude, longitude, elevation, date, TMIN (minimum temp in F), TMAX (maximum temp in F), TAVG (average temp in F), AWND (average daily wind speed in mph), WDF5 (direction of fastest 5-second wind in degrees), WSF5 (fastest 5-second wind speed in mph), SNOW (snowfall in inches), SNWD (snow depth in inches), and PRCP (precipitation in inches).  Immediately, I notice that there are some NaN values in the dataset."), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 552,
+          columnNumber: 17
+        }
+      }, "Because this weather dataset had hundreds of thousands of rows, I decided to narrow it down to just Montana.  The initial reason I was trying to make my dataset smaller was because it was taking too long to load on the website as I was creating my visuals.  But this was also a way to cut down the dataset in a beneficial and meaningful way.  I decided to explore 3 questions in this assignment.  First, I broadly wanted to explore throughout all of my visualizations how the weather measurements differ in Montana.  I next wanted to look at how the weather differs at different airports, specifically the Kalispell Glacier Airport and the Missoula International Airport.  These are the two airports I fly into when I visit my grandparents in Montana, and I thought it would be interesting to compare the weather at the two and see if I could draw any conclusions about which airport is more likely to have weather related delays.  I chose to look at the daily average wind speed (AWND) and average snowfall (SNOW) because I felt like those 2 factors were likely to impact a plane’s travel.  I chose to do two side by side barcode plots.  This not only allowed me to compare the two airports to each other, I was also able to compare each individual airport to the rest of the weather stations throughout the state.  I thought that was really beneficial and effective for me to draw conclusions.  For my final question, I wanted to look at how temperatures differ across the two weather stations in Glacier National Park.  I have been there and it is a huge park, and so interesting that the weather can fluctuate so much in different parts of the same park.  To do this, I made scatter plots of two of the Glacier National Park weather stations.  Similarly to my other visualizations, I chose to use color to separate the weather station I was focusing on from all the other weather stations in Montana.  This way, I was able to compare the two stations in Glacier, while also being able to compare them to the rest of the state."), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 553,
+          columnNumber: 17
+        }
+      }, "While completing this project, I learned a lot about the process and about the code in general.  One of the biggest learning curves was choosing the x and y points.  It took me a while to finally understand how to effectively place things.  Creating the labels and tick marks was more time consuming because I had to make sure everything lined up well.  I also found that it can be helpful to narrow down your dataset if it can provide opportunity for a more focused analysis.  I learned that color can be an effective medium to allow for a multi-layer analysis of the same visualization.  I also learned that using contrasting colors is important which I tried to do."), /*#__PURE__*/_reactDefault.default.createElement("h2", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 554,
+          columnNumber: 17
+        }
+      }, "Peer Feedback"), /*#__PURE__*/_reactDefault.default.createElement("li", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 555,
+          columnNumber: 17
+        }
+      }, "Instead of using color in the Barcode plots, shift the highlighted bars over to see them better"), /*#__PURE__*/_reactDefault.default.createElement("li", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 556,
+          columnNumber: 17
+        }
+      }, "Make graphs bigger"), /*#__PURE__*/_reactDefault.default.createElement("li", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 557,
+          columnNumber: 17
+        }
+      }, "Change contrast on scatterplot"), /*#__PURE__*/_reactDefault.default.createElement("h2", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 558,
+          columnNumber: 17
+        }
+      }, "Implemented Feedback"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 559,
+          columnNumber: 17
+        }
+      }, "I decided to make all of my graphs bigger.  I agreed with my feedback in that it would make the graphs easier to see and read.  I had to fix my scaling on everything which was tedious becuase a lot of my labels and tick marks were hard coded in to fit my old scaling.  I also noticed I should make some lines thicker to make them easier to see since everything was bigger now.  I also changed my contrast of colors on my scatterplot so the highlighted ones could stand out better.")))
+    );
+  };
+  _s(App, "52bsSfiOmo13TAirzFgDobB5jNg=", false, function () {
+    return [_hooksUseFetch.useFetch];
+  });
+  _c = App;
+  exports.default = App;
+  var _c;
+  $RefreshReg$(_c, "App");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
